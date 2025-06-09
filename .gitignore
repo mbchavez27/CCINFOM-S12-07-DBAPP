@@ -1,0 +1,42 @@
+# Node modules (both server and client)
+**/node_modules/
+
+# Logs
+**/npm-debug.log*
+**/yarn-debug.log*
+**/yarn-error.log*
+**/pnpm-debug.log*
+
+# dotenv files (for MySQL and secrets)
+**/.env
+**/.env.local
+
+# React build output
+client/build/
+
+# Express build output (if any, e.g., if using Babel in future)
+server/dist/
+server/build/
+
+# OS-specific
+.DS_Store
+Thumbs.db
+
+# IDE/editor folders
+.vscode/
+.idea/
+
+# Test/coverage
+**/coverage/
+**/test-results/
+
+# Mac/Linux file system metadata
+ehthumbs.db
+Icon?
+
+# Database dump files (optional)
+*.sql
+*.dump
+
+# Optional: local MySQL config files (if any)
+*.cnf
