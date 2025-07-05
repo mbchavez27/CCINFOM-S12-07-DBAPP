@@ -16,13 +16,16 @@ CREATE TABLE customers (
 	last_name varchar(255) NOT NULL,
 	first_name varchar(255) NOT NULL,
 	type varchar(50) NOT NULL,
-	college varchar(50) NOT NULL,
+	college_id varchar(50) NOT NULL,
 	CONSTRAINT customer_pk PRIMARY KEY(customer_id),
+	CONSTRAINT college_fk FOREIGN KEY(college_id),
 	CONSTRAINT chk_type CHECK(type IN ('Student', 'Faculty')),
-	CONSTRAINT chk_college CHECK(college IN ('College of Business', 'College of Education', 
-						'School of Law', 'College of Engineering',
-						'College of Liberal Arts', 'College of Science',
-						'College of Computer Studies', 'School of Economics'))
+);
+
+CREATE TABLE colleges (
+	college_id int NOT NULL AUTO_INCREMENT,
+	college varchar(50) NOT NULL,
+	CONSTRAINT college_pk PRIMARY KEY(college_id),
 );
 
 CREATE TABLE staff (
@@ -43,12 +46,6 @@ CREATE TABLE tickets (
 	description varchar(255) NOT NULL,
 	date_opened date NOT NULL,
 	date_closed date,
-	status varchar(10) AS (
-        CASE
-            WHEN date_closed IS NULL THEN 'open'
-            ELSE 'closed'
-        END
-    ) STORED,
 	CONSTRAINT chk_issue_type CHECK(issue_type IN ('Software', 'Hardware', 'Other')),
 	CONSTRAINT chk_date_closed CHECK(date_closed IS NULL OR date_closed >= date_opened),
 	CONSTRAINT ticket_pk PRIMARY KEY(ticket_id),
