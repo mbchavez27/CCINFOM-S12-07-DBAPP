@@ -1,8 +1,8 @@
-import AdminHomepage from "./pages/AdminHomepage";
+import LandingPage from "./pages/LandingPage";
 import "./App.css";
 
 function App() {
-  return <AdminHomepage />;
+    return <LandingPage />;
 }
 
 export default App;
