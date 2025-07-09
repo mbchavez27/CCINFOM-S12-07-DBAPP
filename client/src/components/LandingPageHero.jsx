@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function AdminHeroSection() {
+function LandingPageHero() {
     const [user, setUser] = useState("Customer");
 
     return (
@@ -51,4 +51,4 @@ function AdminHeroSection() {
     );
 }
 
-export default AdminHeroSection;
+export default LandingPageHero;
