@@ -14,7 +14,7 @@ CREATE TABLE laptops (
 CREATE TABLE colleges (
 	college_id varchar(10) NOT NULL,
 	college varchar(50) NOT NULL,
-	CONSTRAINT college_pk PRIMARY KEY(college_id),
+	CONSTRAINT college_pk PRIMARY KEY(college_id)
 );
 
 CREATE TABLE customers (
@@ -25,7 +25,7 @@ CREATE TABLE customers (
 	college_id varchar(10) NOT NULL,
 	CONSTRAINT customer_pk PRIMARY KEY(customer_id),
 	CONSTRAINT college_fk FOREIGN KEY(college_id) REFERENCES colleges(college_id),
-	CONSTRAINT chk_type CHECK(type IN ('Student', 'Faculty')),
+	CONSTRAINT chk_type CHECK(type IN ('Student', 'Faculty'))
 );
 
 CREATE TABLE staff (
