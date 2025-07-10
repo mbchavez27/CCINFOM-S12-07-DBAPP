@@ -16,7 +16,7 @@ CREATE TABLE customers (
 	last_name varchar(255) NOT NULL,
 	first_name varchar(255) NOT NULL,
 	type varchar(50) NOT NULL,
-	college_id varchar(50) NOT NULL,
+	college_id int NOT NULL,
 	CONSTRAINT customer_pk PRIMARY KEY(customer_id),
 	CONSTRAINT college_fk FOREIGN KEY(college_id),
 	CONSTRAINT chk_type CHECK(type IN ('Student', 'Faculty')),
