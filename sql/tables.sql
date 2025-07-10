@@ -12,7 +12,7 @@ CREATE TABLE laptops (
 );
 
 CREATE TABLE colleges (
-	college_id varchar(10) NOT NULL AUTO_INCREMENT,
+	college_id varchar(10) NOT NULL,
 	college varchar(50) NOT NULL,
 	CONSTRAINT college_pk PRIMARY KEY(college_id),
 );
