@@ -11,21 +11,21 @@ CREATE TABLE laptops (
 	CONSTRAINT chk_os CHECK(product_os in ('Windows', 'MacOS', 'Linux'))
 );
 
+CREATE TABLE colleges (
+	college_id varchar(10) NOT NULL AUTO_INCREMENT,
+	college varchar(50) NOT NULL,
+	CONSTRAINT college_pk PRIMARY KEY(college_id),
+);
+
 CREATE TABLE customers (
 	customer_id int NOT NULL AUTO_INCREMENT,
 	last_name varchar(255) NOT NULL,
 	first_name varchar(255) NOT NULL,
 	type varchar(50) NOT NULL,
-	college_id int NOT NULL,
+	college_id varchar(10) NOT NULL,
 	CONSTRAINT customer_pk PRIMARY KEY(customer_id),
 	CONSTRAINT college_fk FOREIGN KEY(college_id),
 	CONSTRAINT chk_type CHECK(type IN ('Student', 'Faculty')),
-);
-
-CREATE TABLE colleges (
-	college_id int NOT NULL AUTO_INCREMENT,
-	college varchar(50) NOT NULL,
-	CONSTRAINT college_pk PRIMARY KEY(college_id),
 );
 
 CREATE TABLE staff (
