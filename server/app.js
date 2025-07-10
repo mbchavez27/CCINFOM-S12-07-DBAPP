@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import customerRouter from "./routes/customer.routes.js";
 import collegeRouter from "./routes/college.routes.js";
+import staffRouter from "./routes/staff.routes.js";
 
 const app = express();
 const port = 3000;
@@ -11,6 +12,7 @@ app.use(cors());
 
 app.use("/customers", customerRouter);
 app.use("/colleges", collegeRouter);
+app.use("/staff", staffRouter);
 
 app.listen(port, () => {
   console.log("Laptop Borrowing App running at port " + port);
