@@ -1,6 +1,7 @@
 CREATE DATABASE laptop_borrowing;
 USE laptop_borrowing;
 
+#CREATE TABLES
 CREATE TABLE laptops (
 	laptop_id int NOT NULL AUTO_INCREMENT,
 	product_name varchar(255) NOT NULL,
@@ -23,6 +24,7 @@ CREATE TABLE customers (
 	first_name varchar(255) NOT NULL,
 	type varchar(50) NOT NULL,
 	college_id varchar(10) NOT NULL,
+    CONSTRAINT customer_name UNIQUE (last_name, first_name), 
 	CONSTRAINT customer_pk PRIMARY KEY(customer_id),
 	CONSTRAINT college_fk FOREIGN KEY(college_id) REFERENCES colleges(college_id),
 	CONSTRAINT chk_type CHECK(type IN ('Student', 'Faculty'))
@@ -34,6 +36,7 @@ CREATE TABLE staff (
 	first_name varchar(255) NOT NULL,
 	role varchar(50),
 	contact varchar(20) NOT NULL,
+    CONSTRAINT staff_name UNIQUE (last_name, first_name), 
 	constraint staff_pk PRIMARY KEY(staff_id)
 );
 
@@ -67,3 +70,15 @@ create table borrow_records (
 	CONSTRAINT borrow_record_fk2 FOREIGN KEY(staff_id) REFERENCES staff(staff_id),
 	CONSTRAINT borrow_record_fk3 FOREIGN KEY(customer_id) REFERENCES customers(customer_id)
 );
+
+SHOW tables;
+
+#ALTER TABLE IF YOU HAVE CREATED TABLE ALREADY
+ALTER TABLE customers
+ADD CONSTRAINT unique_fullname_customer UNIQUE (last_name, first_name);
+
+ALTER TABLE staff
+ADD CONSTRAINT unique_fullname_staff UNIQUE (last_name, first_name);
+
+describe customers;
+describe staff;
