@@ -1,4 +1,3 @@
-import axios from "axios";
 import { db } from "../config/db.js";
 
 export const getCustomers = async () => {
