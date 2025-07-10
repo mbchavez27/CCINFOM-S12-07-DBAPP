@@ -24,7 +24,7 @@ CREATE TABLE customers (
 	type varchar(50) NOT NULL,
 	college_id varchar(10) NOT NULL,
 	CONSTRAINT customer_pk PRIMARY KEY(customer_id),
-	CONSTRAINT college_fk FOREIGN KEY(college_id),
+	CONSTRAINT college_fk FOREIGN KEY(college_id) REFERENCES colleges(college_id),
 	CONSTRAINT chk_type CHECK(type IN ('Student', 'Faculty')),
 );
 
