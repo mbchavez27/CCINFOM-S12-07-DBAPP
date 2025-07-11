@@ -4,5 +4,6 @@ const router = express.Router();
 
 router.get("/", staffController.getStaff);
 router.post("/register", staffController.registerStaff);
+router.post("/login", staffController.loginStaff);
 
 export default router;

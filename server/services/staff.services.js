@@ -11,6 +11,19 @@ export const getStaff = async () => {
   }
 };
 
+export const loginStaff = async (last_name, first_name) => {
+  try {
+    const [staff] = await db.query(
+      "SELECT * FROM staff s WHERE s.last_name = ? AND s.first_name = ?",
+      [last_name, first_name]
+    );
+    return staff;
+  } catch (error) {
+    console.error("Error fetching staff: ", error);
+    throw error;
+  }
+};
+
 export const registerStaff = async (last_name, first_name, role, contact) => {
   try {
     const [result] = await db.query(

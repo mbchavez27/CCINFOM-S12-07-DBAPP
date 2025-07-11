@@ -17,6 +17,21 @@ export const registerCustomers = async (req, res) => {
   }
 };
 
+export const loginCustomer = async (req, res) => {
+  const { last_name, first_name } = req.body;
+  try {
+    const customer = await customerService.loginCustomer(last_name, first_name);
+
+    if (!customer) {
+      res.status(404).json({ message: "No customers found" });
+    }
+
+    res.status(200).json({ message: "Logged in customer", data: customer });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
 export const getCustomers = async (req, res) => {
   try {
     const customers = await customerService.getCustomers();

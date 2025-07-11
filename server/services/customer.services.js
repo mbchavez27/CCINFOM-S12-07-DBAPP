@@ -10,6 +10,20 @@ export const getCustomers = async () => {
   }
 };
 
+export const loginCustomer = async (last_name, first_name) => {
+  try {
+    const [customer] = await db.query(
+      "SELECT * FROM customers c WHERE c.last_name = ? AND c.first_name = ?",
+      [last_name, first_name]
+    );
+
+    return customer;
+  } catch (error) {
+    console.log("Error Fetching customer:", error);
+    throw error;
+  }
+};
+
 export const registerCustomers = async (
   last_name,
   first_name,
