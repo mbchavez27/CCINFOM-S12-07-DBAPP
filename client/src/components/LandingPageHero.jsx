@@ -1,4 +1,5 @@
 import { useState } from "react";
+import NameInput from "./NameInput";
 
 function LandingPageHero() {
   const [user, setUser] = useState("Customer");
@@ -32,30 +33,7 @@ function LandingPageHero() {
           </div>
         </div>
         <form action="/insert-path" method="post" className="flex flex-col">
-          <div className="flex gap-5">
-            <p className="flex flex-col grow">
-              <label htmlFor="first-name" className="ml-5">
-                Username
-              </label>
-              <input
-                type="text"
-                id="first-name"
-                placeholder="First Name"
-                className="bg-neutral-50 p-3 rounded-md mt-1 inset-shadow-neutral-900 w-full"
-              />
-            </p>
-            <p className="flex flex-col grow">
-              <label htmlFor="last-name" className="ml-5">
-                Last Name
-              </label>
-              <input
-                type="text"
-                id="last-name"
-                placeholder="Last Name"
-                className="bg-neutral-50 p-3 rounded-md mt-1 inset-shadow-neutral-900 w-full"
-              />
-            </p>
-          </div>
+          <NameInput />
 
           <button
             type="submit"
@@ -64,6 +42,12 @@ function LandingPageHero() {
             Log In
           </button>
         </form>
+        <p className="text-center">
+          First time customer?{" "}
+          <a className="text-blue-500" href="/signup">
+            Sign Up
+          </a>
+        </p>
       </div>
     </div>
   );
