@@ -1,19 +1,20 @@
+import { useEffect } from 'react'
+import { useCookies } from 'react-cookie'
+import NavBar from '../components/NavBar'
 import CustomerHero from '../components/CustomerHero'
 import CustomerDashboard from '../components/CustomerDashboard'
 import Footer from '../components/Footer'
-import NavBar from '../components/NavBar'
-import { useCookies } from 'react-cookie'
 
 function ClientView() {
   const [cookies] = useCookies(['user'])
-  console.log(cookies.user)
+
+  const firstName = cookies.user?.data.first_name || ''
+  const lastName = cookies.user?.data.last_name || ''
+
   return (
     <>
       <NavBar />
-      <CustomerHero
-        firstName={cookies.user.data.first_name}
-        lastName={cookies.user.data.last_name}
-      />
+      <CustomerHero firstName={firstName} lastName={lastName} />
       <CustomerDashboard />
       <Footer />
     </>

@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router'
 function LandingPageHero() {
   const [user, setUser] = useState('Customer')
   const [last_name, setLast_name] = useState('')
-  const [first_name, setFast_name] = useState('')
+  const [first_name, setFirst_name] = useState('')
   const [cookies, setCookies] = useCookies(['user'])
   const navigate = useNavigate()
 
@@ -52,7 +52,7 @@ function LandingPageHero() {
                 className="bg-neutral-50 p-3 rounded-md mt-1 inset-shadow-neutral-900 w-full"
                 required
                 onChange={(e) => {
-                  setFast_name(e.target.value)
+                  setFirst_name(e.target.value)
                 }}
               />
             </p>
@@ -80,8 +80,8 @@ function LandingPageHero() {
                 if (user == 'Customer') {
                   const userDetails = await customerLogin(last_name, first_name)
                   if (userDetails.status != 404) {
-                    setCookies('user', JSON.stringify(userDetails.data), {
-                      path: '/client',
+                    setCookies('user', userDetails.data, {
+                      path: '/',
                     })
                     navigate('/client')
                   }
