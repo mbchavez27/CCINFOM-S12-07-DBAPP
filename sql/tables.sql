@@ -30,7 +30,7 @@ CREATE TABLE staff (
 
 CREATE TABLE issues (
     issue_id INT NOT NULL AUTO_INCREMENT,
-    type VARCHAR(10) NOT NULL,
+    type VARCHAR(50) NOT NULL,
     category VARCHAR(255) NOT NULL,
     CONSTRAINT issues_pk PRIMARY KEY(issue_id)
 );
