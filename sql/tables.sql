@@ -2,6 +2,7 @@ CREATE DATABASE laptop_borrowing;
 USE laptop_borrowing;
 
 -- CREATE TABLES
+-- Independent Tables (No Foreign Key)
 CREATE TABLE laptops (
 	laptop_id INT NOT NULL AUTO_INCREMENT,
 	product_name VARCHAR(255) NOT NULL,
@@ -18,6 +19,39 @@ CREATE TABLE colleges (
 	CONSTRAINT college_pk PRIMARY KEY(college_id)
 );
 
+CREATE TABLE staff (
+	staff_id INT NOT NULL AUTO_INCREMENT,
+	last_name VARCHAR(255) NOT NULL,
+	first_name VARCHAR(255) NOT NULL,
+	contact VARCHAR(20) NOT NULL,
+    CONSTRAINT staff_name UNIQUE (last_name, first_name), 
+	constraint staff_pk PRIMARY KEY(staff_id)
+);
+
+CREATE TABLE issues (
+    issue_id INT NOT NULL AUTO_INCREMENT,
+    type VARCHAR(10) NOT NULL,
+    category VARCHAR(255) NOT NULL,
+    CONSTRAINT issues_pk PRIMARY KEY(issue_id)
+);
+
+-- Has Foreign Keys for Laptop, Staff, Issues
+CREATE TABLE tickets (
+	ticket_id INT NOT NULL AUTO_INCREMENT,
+	laptop_id INT NOT NULL,
+	staff_id INT NOT NULL,
+	issue_id INT NOT NULL,
+	description VARCHAR(255) NOT NULL,
+	date_opened DATE NOT NULL,
+	date_closed DATE,
+	CONSTRAINT chk_date_closed CHECK(date_closed IS NULL OR DATE_closed >= DATE_opened),
+	CONSTRAINT ticket_pk PRIMARY KEY(ticket_id),
+	CONSTRAINT ticket_fk1 FOREIGN KEY(laptop_id) REFERENCES laptops(laptop_id),
+	CONSTRAINT ticket_fk2 FOREIGN KEY(staff_id) REFERENCES staff(staff_id),
+	CONSTRAINT ticket_fk3 FOREIGN KEY(issue_id) REFERENCES issues(issue_id)
+);
+
+-- Create Customers 
 CREATE TABLE customers (
 	customer_id INT NOT NULL AUTO_INCREMENT,
 	last_name VARCHAR(255) NOT NULL,
@@ -28,39 +62,6 @@ CREATE TABLE customers (
 	CONSTRAINT customer_pk PRIMARY KEY(customer_id),
 	CONSTRAINT college_fk FOREIGN KEY(college_id) REFERENCES colleges(college_id),
 	CONSTRAINT chk_type CHECK(type IN ('Student', 'Faculty'))
-);
-
-CREATE TABLE staff (
-	staff_id INT NOT NULL AUTO_INCREMENT,
-	last_name VARCHAR(255) NOT NULL,
-	first_name VARCHAR(255) NOT NULL,
-	role VARCHAR(50),
-	contact VARCHAR(20) NOT NULL,
-    CONSTRAINT staff_name UNIQUE (last_name, first_name), 
-	constraint staff_pk PRIMARY KEY(staff_id)
-);
-
-CREATE TABLE issues (
-    issue_id INT NOT NULL,
-    type VARCHAR(10) NOT NULL,
-    category VARCHAR(255) NOT NULL,
-    CONSTRAINT issues_pk PRIMARY KEY(issues_id)
-);
-
-CREATE TABLE tickets (
-	ticket_id INT NOT NULL AUTO_INCREMENT,
-	laptop_id INT NOT NULL,
-	staff_id INT NOT NULL,
-	issue_id INT NOT NULL,
-	description VARCHAR(255) NOT NULL,
-	date_opened DATE NOT NULL,
-	date_closed DATE,
-	CONSTRAINT chk_issue_type CHECK(issue_type IN ('Software', 'Hardware', 'Other')),
-	CONSTRAINT chk_date_closed CHECK(date_closed IS NULL OR DATE_closed >= DATE_opened),
-	CONSTRAINT ticket_pk PRIMARY KEY(ticket_id),
-	CONSTRAINT ticket_fk1 FOREIGN KEY(laptop_id) REFERENCES laptops(laptop_id),
-	CONSTRAINT ticket_fk2 FOREIGN KEY(staff_id) REFERENCES staff(staff_id),
-	CONSTRAINT ticket_fk3 FOREIGN KEY(issue_id) REFERENCES issues(issue_id)
 );
 
 CREATE TABLE borrow_records (
@@ -77,7 +78,6 @@ CREATE TABLE borrow_records (
 	CONSTRAINT borrow_record_fk3 FOREIGN KEY(customer_id) REFERENCES customers(customer_id)
 );
 
-
 CREATE TABLE penalties (
 	penalty_id INT NOT NULL AUTO_INCREMENT,
 	borrow_id INT NOT NULL,
@@ -87,12 +87,15 @@ CREATE TABLE penalties (
 	date_lifted DATE,
 	CONSTRAINT chk_lift_date CHECK(date_lifted IS NULL OR DATE_lifted >= DATE_imposed),
     CONSTRAINT penalties_pk PRIMARY KEY(penalty_id),
-	CONSTRAINT penalties_fk1 FOREIGN KEY(borrow_id) REFERENCES borrow_record(borrow_id),
-	CONSTRAINT penalties_fk2 FOREIGN KEY(customer_id) REFERENCES customers(customers_id),
-	CONSTRAINT penalties_fk3 FOREIGN KEY(ticket_id) REFERENCES ticket(ticket_id)
+	CONSTRAINT penalties_fk1 FOREIGN KEY(borrow_id) REFERENCES borrow_records(borrow_id),
+	CONSTRAINT penalties_fk2 FOREIGN KEY(customer_id) REFERENCES customers(customer_id),
+	CONSTRAINT penalties_fk3 FOREIGN KEY(ticket_id) REFERENCES tickets(ticket_id)
 );
 
 SHOW tables;
+
+-- Drop database if needed
+drop DATABASE laptop_borrowing;
 
 -- ALTER TABLE IF YOU HAVE CREATED TABLE ALREADY
 ALTER TABLE customers
