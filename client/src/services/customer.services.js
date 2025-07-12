@@ -9,10 +9,11 @@ export const customerLogin = async (last_name, first_name) => {
         first_name,
       }
     )
-    console.log(response)
     return response
   } catch (error) {
     console.error(error)
     return error
   }
 }
+
+export const customerRegister = async (last_name, first_name) => {}

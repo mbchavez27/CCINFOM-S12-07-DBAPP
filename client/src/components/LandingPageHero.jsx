@@ -1,11 +1,15 @@
-import { useState } from 'react'
+import { use, useState } from 'react'
 import { customerLogin } from '../services/customer.services'
 import { staffLogin } from '../services/staff.services'
+import { useCookies } from 'react-cookie'
+import { useNavigate } from 'react-router'
 
 function LandingPageHero() {
   const [user, setUser] = useState('Customer')
   const [last_name, setLast_name] = useState('')
   const [first_name, setFast_name] = useState('')
+  const [cookies, setCookies] = useCookies(['user'])
+  const navigate = useNavigate()
 
   return (
     <div className="bg-[url(/hero.jpg)] h-screen flex justify-center items-center">
@@ -71,11 +75,19 @@ function LandingPageHero() {
 
           <button
             className="mt-10 py-2 text-neutral-50 bg-blue-500 hover:bg-blue-600 transition duration-200 rounded-md"
-            onClick={() => {
-              if (user == 'Customer') {
-                customerLogin(last_name, first_name)
-              } else {
-                staffLogin(last_name, first_name)
+            onClick={async () => {
+              if (last_name && first_name) {
+                if (user == 'Customer') {
+                  const userDetails = await customerLogin(last_name, first_name)
+                  if (userDetails.status != 404) {
+                    setCookies('user', JSON.stringify(userDetails.data), {
+                      path: '/client',
+                    })
+                    navigate('/client')
+                  }
+                } else {
+                  staffLogin(last_name, first_name)
+                }
               }
             }}
           >
