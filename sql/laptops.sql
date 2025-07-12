@@ -1,4 +1,4 @@
-INSERT INTO laptops (product_name, product_os, battery_health) VALUES
+INSERT INTO laptops(product_name, product_os, battery_health) VALUES
 ('MacBook Pro 13"', 'MacOS', 95),
 ('Dell XPS 15', 'Windows', 87),
 ('HP Spectre x360', 'Windows', 92),

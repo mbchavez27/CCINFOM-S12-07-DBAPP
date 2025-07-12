@@ -1,4 +1,4 @@
-INSERT INTO issues (issue_id, type, category) VALUES
+INSERT INTO issues(issue_id, type, category) VALUES
 -- Hardware
 (1, 'Hardware', 'Battery Issue'),
 (2, 'Hardware', 'Display/Screen Issue'),
