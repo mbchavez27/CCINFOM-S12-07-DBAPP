@@ -1,7 +1,7 @@
-#SELECT STATEMENTS
+-- SELECT STATEMENTS
 SELECT college_id, college FROM colleges;
 
-#INSERT STATEMENTS
+-- INSERT STATEMENTS
 INSERT INTO colleges (college_id, college) values ('CCS', 'College of Computer Studies');
 INSERT INTO colleges (college_id, college) values ('GCOE', 'College of Engineering');
 INSERT INTO colleges (college_id, college) values ('COS','College of Science');
