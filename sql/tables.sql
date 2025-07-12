@@ -24,8 +24,8 @@ CREATE TABLE staff (
 	last_name VARCHAR(255) NOT NULL,
 	first_name VARCHAR(255) NOT NULL,
 	contact VARCHAR(20) NOT NULL,
-    CONSTRAINT staff_name UNIQUE (last_name, first_name), 
-	constraint staff_pk PRIMARY KEY(staff_id)
+    CONSTRAINT unique_staff_name UNIQUE (last_name, first_name), 
+	CONSTRAINT staff_pk PRIMARY KEY(staff_id)
 );
 
 CREATE TABLE issues (
@@ -58,10 +58,10 @@ CREATE TABLE customers (
 	first_name VARCHAR(255) NOT NULL,
 	type VARCHAR(50) NOT NULL,
 	college_id VARCHAR(10) NOT NULL,
-    CONSTRAINT customer_name UNIQUE (last_name, first_name), 
+    CONSTRAINT unique_customer_name UNIQUE (last_name, first_name),
+	CONSTRAINT chk_type CHECK(type IN ('Student', 'Faculty')),
 	CONSTRAINT customer_pk PRIMARY KEY(customer_id),
-	CONSTRAINT college_fk FOREIGN KEY(college_id) REFERENCES colleges(college_id),
-	CONSTRAINT chk_type CHECK(type IN ('Student', 'Faculty'))
+	CONSTRAINT college_fk FOREIGN KEY(college_id) REFERENCES colleges(college_id)
 );
 
 CREATE TABLE borrow_records (
@@ -91,18 +91,3 @@ CREATE TABLE penalties (
 	CONSTRAINT penalties_fk2 FOREIGN KEY(customer_id) REFERENCES customers(customer_id),
 	CONSTRAINT penalties_fk3 FOREIGN KEY(ticket_id) REFERENCES tickets(ticket_id)
 );
-
-SHOW tables;
-
--- Drop database if needed
-drop DATABASE laptop_borrowing;
-
--- ALTER TABLE IF YOU HAVE CREATED TABLE ALREADY
-ALTER TABLE customers
-ADD CONSTRAINT unique_fullname_customer UNIQUE (last_name, first_name);
-
-ALTER TABLE staff
-ADD CONSTRAINT unique_fullname_staff UNIQUE (last_name, first_name);
-
-describe customers;
-describe staff;
