@@ -1,5 +1,3 @@
-import NameInput from "./NameInput";
-
 function CustomerSignUp() {
   return (
     <div className="bg-[url(/hero.jpg)] h-screen flex justify-center items-center">
@@ -10,7 +8,30 @@ function CustomerSignUp() {
           method="post"
           className="flex flex-col gap-3"
         >
-          <NameInput />
+          <div className="flex gap-5">
+            <p className="flex flex-col grow">
+              <label htmlFor="first-name" className="ml-5">
+                First Name
+              </label>
+              <input
+                type="text"
+                id="first-name"
+                placeholder="First Name"
+                className="bg-neutral-50 p-3 rounded-md mt-1 inset-shadow-neutral-900 w-full"
+              />
+            </p>
+            <p className="flex flex-col grow">
+              <label htmlFor="last-name" className="ml-5">
+                Last Name
+              </label>
+              <input
+                type="text"
+                id="last-name"
+                placeholder="Last Name"
+                className="bg-neutral-50 p-3 rounded-md mt-1 inset-shadow-neutral-900 w-full"
+              />
+            </p>
+          </div>
 
           <p className="flex flex-col grow">
             <label htmlFor="type-select" className="ml-5">
@@ -58,14 +79,14 @@ function CustomerSignUp() {
         </form>
 
         <p className="text-center">
-          Returning Customer?{" "}
+          Returning Customer?{' '}
           <a className="text-blue-500" href="/">
             Log in
           </a>
         </p>
       </div>
     </div>
-  );
+  )
 }
 
-export default CustomerSignUp;
+export default CustomerSignUp
