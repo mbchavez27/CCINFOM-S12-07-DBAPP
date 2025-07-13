@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router";
 import "./App.css";
 import SignUpPage from "./pages/SignUpPage";
 import ClientView from "./pages/ClientView";
+import BorrowPage from "./pages/BorrowPage";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
         <Route path="/signup" element={<SignUpPage />} />
         <Route path="/client">
           <Route index element={<ClientView />} />
+          <Route path="browse" element={<BorrowPage />}></Route>
         </Route>
       </Routes>
     </BrowserRouter>
