@@ -9,6 +9,7 @@ import StaffView from "./pages/StaffView";
 import TicketsPage from "./pages/TicketsPage";
 import LaptopInventory from "./pages/LaptopInventory";
 import AddLaptop from "./pages/AddLaptop";
+import RecordList from "./pages/RecordList";
 
 function App() {
     return (
@@ -23,6 +24,7 @@ function App() {
                         <Route path="add" element={<AddLaptop />} />
                     </Route>
                     <Route path="tickets" element={<TicketsPage />} />
+                    <Route path="records" element={<RecordList />} />
                 </Route>
                 <Route path="client">
                     <Route index element={<ClientView />} />

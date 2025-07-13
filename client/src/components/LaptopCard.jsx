@@ -1,4 +1,4 @@
-function LaptopCard({ laptop, os, batteryHealth, staff_view }) {
+function LaptopCard({ laptop, os, batteryHealth, staff_view, in_use }) {
     return (
         <div className="p-5 flex flex-col gap-1 rounded-xl border-2 border-neutral-300">
             <img
@@ -10,14 +10,14 @@ function LaptopCard({ laptop, os, batteryHealth, staff_view }) {
             <p className="font-normal">{os}</p>
             <p className="font-normal">{batteryHealth}%</p>
             <div
-                className={`flex justify-around ${staff_view === false ? "hidden" : ""}`}
+                className={`flex justify-around ${staff_view === true && in_use === false ? "" : "hidden"}`}
             >
                 <button className="px-5 py-2 rounded-lg text-neutral-50 bg-red-600">
                     Delete Laptop
                 </button>
             </div>
             <div
-                className={`flex justify-around ${staff_view === true ? "hidden" : ""}`}
+                className={`flex justify-around ${staff_view === false ? "" : "hidden"}`}
             >
                 <a href="/client/browse/checkout">
                     <button className="px-5 py-2 rounded-lg text-neutral-50 bg-red-600">

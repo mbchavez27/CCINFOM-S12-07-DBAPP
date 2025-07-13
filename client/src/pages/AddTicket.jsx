@@ -1,23 +1,37 @@
 import Footer from "../components/Footer";
 import NavBar from "../components/NavBar";
 
-function AddLaptop() {
+function AddTicket() {
     return (
         <>
             <NavBar />
             <div className="py-15 border-y-2 border-neutral-400 flex flex-col gap-5 items-center">
-                <h1 className="font-bold text-2xl">Add Laptop</h1>
+                <h1 className="font-bold text-2xl">Add Ticket</h1>
                 <div className="w-[400px] flex flex-col gap-2">
                     <p className="flex flex-col grow">
-                        <label htmlFor="laptop-name" className="ml-5">
-                            Product Name
+                        <label htmlFor="college" className="ml-5">
+                            College
                         </label>
-                        <input
-                            type="text"
-                            id="laptop-name"
-                            className="bg-neutral-50 p-3 rounded-md mt-1 inset-shadow-neutral-900 w-full border-2 border-neutral-400"
-                            required
-                        />
+                        <select
+                            id="college"
+                            value={college}
+                            className="bg-neutral-50 p-3 rounded-md mt-1 inset-shadow-neutral-900 w-full"
+                            onChange={(e) => {
+                                setCollege(e.target.value);
+                            }}
+                        >
+                            <option value="" disabled hidden>
+                                Select your option
+                            </option>
+                            <option value="CCS">College of Computer Studies</option>
+                            <option value="GCOE">College of Engineering</option>
+                            <option value="COS">College of Science</option>
+                            <option value="RVRCOB">College of Business</option>
+                            <option value="CLA">College of Liberal Arts</option>
+                            <option value="BAGCED">College of Education</option>
+                            <option value="SOE">School of Economics</option>
+                            <option value="TDSOL">School of Law</option>
+                        </select>
                     </p>
                     <p className="flex flex-col grow">
                         <label htmlFor="product-os" className="ml-5">
@@ -54,4 +68,4 @@ function AddLaptop() {
     );
 }
 
-export default AddLaptop;
+export default AddTicket;
