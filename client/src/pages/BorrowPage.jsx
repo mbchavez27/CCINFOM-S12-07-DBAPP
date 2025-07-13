@@ -9,15 +9,17 @@ import { useState } from 'react'
 function BorrowPage() {
   const [laptops, setLaptops] = useState([])
   const [loading, setLoading] = useState(false)
+  const [page, setPage] = useState(1)
 
+  const fetchLaptops = async (currentPage = 1) => {
+    setLoading(false)
+    const res = await getLaptops(currentPage, 6)
+    setLaptops(res.data)
+    setLoading(true)
+  }
   useEffect(() => {
-    const fetchLaptops = async () => {
-      const data = await getLaptops()
-      setLaptops(data.data)
-      setLoading(true)
-    }
-    fetchLaptops()
-  }, [])
+    fetchLaptops(page)
+  }, [page])
 
   return (
     <>
@@ -41,7 +43,24 @@ function BorrowPage() {
             <>loading...</>
           )}
         </div>
+        <div className="flex justify-center mt-10 gap-4">
+          <button
+            className="px-4 py-2 bg-gray-200 rounded disabled:opacity-50"
+            disabled={page === 1}
+            onClick={() => setPage((prev) => prev - 1)}
+          >
+            Previous
+          </button>
+          <span className="self-center">Page {page}</span>
+          <button
+            className="px-4 py-2 bg-gray-200 rounded"
+            onClick={() => setPage((prev) => prev + 1)}
+          >
+            Next
+          </button>
+        </div>
       </div>
+
       <Footer />
     </>
   )
