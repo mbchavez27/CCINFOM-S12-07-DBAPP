@@ -79,7 +79,7 @@ function LandingPageHero() {
               if (last_name && first_name) {
                 if (user == 'Customer') {
                   const userDetails = await customerLogin(last_name, first_name)
-                  if (userDetails.status != 404) {
+                  if (userDetails.status != 404 && userDetails.status != 500) {
                     setCookies('user', userDetails.data, {
                       path: '/',
                     })
