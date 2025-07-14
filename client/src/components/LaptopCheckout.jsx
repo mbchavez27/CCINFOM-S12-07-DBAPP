@@ -40,10 +40,10 @@ function LaptopCheckout({ laptop_id, laptop, os, batteryHealth }) {
                   customer_id,
                   dateToday
                 );
-                if (response.status == 500) {
-                  alert("Customer is already borrowing");
-                } else {
+                if (response.status == 201) {
                   alert("Finished Borrowing... Pick up laptop at the counter");
+                } else {
+                  alert("Customer is already borrowing");
                 }
               }
             }}
