@@ -18,14 +18,17 @@ function RecordList() {
                             <th className="px-4 py-2">Pick-up Date</th>
                             <th className="px-4 py-2">Return Date</th>
                             <th className="px-4 py-2">Late</th>
+                            <th className="px-4 py-2">Returned?</th>
+                            <th className="px-4 py-2">Penalized?</th>
                             <th className="px-4 py-2">Incur Penalty</th>
+                            <th className="px-4 py-2">Mark Returned</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <BorrowRecord />
-                        <BorrowRecord />
-                        <BorrowRecord />
-                        <BorrowRecord />
+                        <BorrowRecord returned={true} />
+                        <BorrowRecord returned={true} />
+                        <BorrowRecord returned={false} />
+                        <BorrowRecord returned={false} />
                     </tbody>
                 </table>
             </div>

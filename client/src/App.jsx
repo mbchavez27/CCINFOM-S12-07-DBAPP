@@ -10,6 +10,8 @@ import TicketsPage from "./pages/TicketsPage";
 import LaptopInventory from "./pages/LaptopInventory";
 import AddLaptop from "./pages/AddLaptop";
 import RecordList from "./pages/RecordList";
+import AddTicket from "./pages/AddTicket";
+import AddPenalty from "./pages/AddPenalty";
 
 function App() {
     return (
@@ -23,8 +25,14 @@ function App() {
                         <Route index element={<LaptopInventory />} />
                         <Route path="add" element={<AddLaptop />} />
                     </Route>
-                    <Route path="tickets" element={<TicketsPage />} />
-                    <Route path="records" element={<RecordList />} />
+                    <Route path="tickets">
+                        <Route index element={<TicketsPage />} />
+                        <Route path="add" element={<AddTicket />} />
+                    </Route>
+                    <Route path="records">
+                        <Route index element={<RecordList />} />
+                        <Route path="penalty" element={<AddPenalty />} />
+                    </Route>
                 </Route>
                 <Route path="client">
                     <Route index element={<ClientView />} />

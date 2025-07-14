@@ -2,18 +2,19 @@ import Footer from "../components/Footer";
 import NavBar from "../components/NavBar";
 import TicketInput from "../components/TicketInput";
 
-function AddTicket() {
+function AddPenalty() {
     return (
         <>
             <NavBar />
             <TicketInput
                 laptop={"Lenovo Thinkpad T480"}
                 staff={"Max Chavez"}
-                is_penalty={false}
+                customer={"Alec Nono"}
+                is_penalty={true}
             />
             <Footer />
         </>
     );
 }
 
-export default AddTicket;
+export default AddPenalty;
