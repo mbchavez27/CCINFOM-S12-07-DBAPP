@@ -1,24 +1,24 @@
-import Footer from '../components/Footer'
-import NavBar from '../components/NavBar'
-import LaptopCard from '../components/LaptopCard'
-import { useEffect, useState } from 'react'
-import { getLaptops } from '../services/laptop.services'
+import Footer from "../components/Footer";
+import NavBar from "../components/NavBar";
+import LaptopCard from "../components/LaptopCard";
+import { useEffect, useState } from "react";
+import { getLaptops } from "../services/laptop.services";
 
 function LaptopInventory() {
-  const [laptops, setLaptops] = useState([])
-  const [loading, setLoading] = useState(false)
-  const [page, setPage] = useState(1)
+  const [laptops, setLaptops] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [page, setPage] = useState(1);
 
   const fetchLaptops = async (currentPage = 1) => {
-    setLoading(false)
-    const res = await getLaptops(currentPage, 6)
-    setLaptops(res.data)
-    setLoading(true)
-  }
+    setLoading(false);
+    const res = await getLaptops(currentPage, 6);
+    setLaptops(res.data);
+    setLoading(true);
+  };
 
   useEffect(() => {
-    fetchLaptops(page)
-  }, [page])
+    fetchLaptops(page);
+  }, [page]);
 
   return (
     <>
@@ -38,6 +38,7 @@ function LaptopInventory() {
             laptops.data.map((laptop, index) => {
               return (
                 <LaptopCard
+                  laptop_id={laptop.laptop_id}
                   laptop={laptop.product_name}
                   os={laptop.product_os}
                   batteryHealth={laptop.battery_health}
@@ -45,7 +46,7 @@ function LaptopInventory() {
                   in_use={false}
                   key={index}
                 />
-              )
+              );
             })
           ) : (
             <>loading...</>
@@ -70,7 +71,7 @@ function LaptopInventory() {
       </div>
       <Footer />
     </>
-  )
+  );
 }
 
-export default LaptopInventory
+export default LaptopInventory;

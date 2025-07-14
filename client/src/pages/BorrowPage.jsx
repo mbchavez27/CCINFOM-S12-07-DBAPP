@@ -1,25 +1,25 @@
-import { use } from 'react'
-import Footer from '../components/Footer'
-import LaptopCard from '../components/LaptopCard'
-import NavBar from '../components/NavBar'
-import { getLaptops } from '../services/laptop.services'
-import { useEffect } from 'react'
-import { useState } from 'react'
+import { use } from "react";
+import Footer from "../components/Footer";
+import LaptopCard from "../components/LaptopCard";
+import NavBar from "../components/NavBar";
+import { getLaptops } from "../services/laptop.services";
+import { useEffect } from "react";
+import { useState } from "react";
 
 function BorrowPage() {
-  const [laptops, setLaptops] = useState([])
-  const [loading, setLoading] = useState(false)
-  const [page, setPage] = useState(1)
+  const [laptops, setLaptops] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [page, setPage] = useState(1);
 
   const fetchLaptops = async (currentPage = 1) => {
-    setLoading(false)
-    const res = await getLaptops(currentPage, 6)
-    setLaptops(res.data)
-    setLoading(true)
-  }
+    setLoading(false);
+    const res = await getLaptops(currentPage, 6);
+    setLaptops(res.data);
+    setLoading(true);
+  };
   useEffect(() => {
-    fetchLaptops(page)
-  }, [page])
+    fetchLaptops(page);
+  }, [page]);
 
   return (
     <>
@@ -31,13 +31,14 @@ function BorrowPage() {
             laptops.data.map((laptop, index) => {
               return (
                 <LaptopCard
+                  laptop_id={laptop.laptop_id}
                   laptop={laptop.product_name}
                   os={laptop.product_os}
                   batteryHealth={laptop.battery_health}
                   staff_view={false}
                   key={index}
                 />
-              )
+              );
             })
           ) : (
             <>loading...</>
@@ -63,7 +64,7 @@ function BorrowPage() {
 
       <Footer />
     </>
-  )
+  );
 }
 
-export default BorrowPage
+export default BorrowPage;
