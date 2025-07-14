@@ -30,6 +30,35 @@ export const borrowLaptop = async (req, res) => {
   }
 }
 
+export const returnLaptop = async (req, res) => {
+  const { return_date, borrow_id } = req.body
+  try {
+    const success = await borrowService.returnLaptop(borrow_id, return_date)
+
+    if (success) {
+      res.status(201).json({ message: 'Laptop returned successfully' })
+    } else {
+      res.status(404).json({ message: 'Laptop not found' })
+    }
+  } catch (error) {
+    res.status(500).json({ error: 'Internal server error' })
+  }
+}
+
+export const getBorrowedLaptops = async (req, res) => {
+  try {
+    const BorrowedLaptops = await borrowService.getBorrowedLaptops()
+
+    if (BorrowedLaptops.length == 0) {
+      res.status(404).json({ message: 'No status found' })
+    }
+
+    res.status(200).json({ message: 'Fetched Status', data: BorrowedLaptops })
+  } catch (error) {
+    res.status(500).json({ error: 'Internal server error' })
+  }
+}
+
 export const getCurrentlyBorrowedLaptops = async (req, res) => {
   try {
     const currentlyBorrowedLaptops =

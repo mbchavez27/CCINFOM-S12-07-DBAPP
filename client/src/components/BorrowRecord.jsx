@@ -1,4 +1,8 @@
+import { useNavigate } from 'react-router'
+import { returnLaptop } from '../services/borrow.services'
+
 function BorrowRecord({ record, returned }) {
+  const navigate = useNavigate()
   return (
     <tr className="hover:bg-gray-50">
       <td className="px-4 py-2">{record.borrow_id}</td>
@@ -42,6 +46,21 @@ function BorrowRecord({ record, returned }) {
           className={`bg-neutral-600 text-neutral-50 px-3 py-1 rounded-md ${
             returned === true ? 'hidden' : ''
           }`}
+          onClick={async () => {
+            const today = new Date().toISOString().split('T')[0]
+
+            const choice = confirm(
+              'Are you sure you want to return this laptop?'
+            )
+            if (choice) {
+              const returnedStatus = await returnLaptop(record.borrow_id, today)
+
+              if (returnedStatus.status == 201) {
+                alert('Laptop return successful')
+                navigate(0)
+              }
+            }
+          }}
         >
           Mark Returned
         </button>

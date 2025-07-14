@@ -2,7 +2,7 @@ import { useState } from 'react'
 import BorrowRecord from '../components/BorrowRecord'
 import Footer from '../components/Footer'
 import NavBar from '../components/NavBar'
-import { getCurrentlyBorrowedLaptops } from '../services/borrow.services'
+import { getBorrowedLaptops } from '../services/borrow.services'
 import { useEffect } from 'react'
 import { useCookies } from 'react-cookie'
 
@@ -11,10 +11,10 @@ function RecordList() {
   const [records, setRecords] = useState([])
   const [cookies] = useCookies(['user'])
 
-  const staff_id = cookies.user?.staff_id
+  const staff_id = cookies.user?.data.staff_id
   const fetchCurrentLaptops = async () => {
     setLoading(false)
-    const res = await getCurrentlyBorrowedLaptops()
+    const res = await getBorrowedLaptops()
     setRecords(res.data)
     setLoading(true)
   }
@@ -46,11 +46,12 @@ function RecordList() {
           <tbody>
             {loading ? (
               records.data.map((record, index) => {
-                if ((record.staff_id = staff_id)) {
+                if (record.staff_id == staff_id) {
+                  console.log(record.return_date)
                   return (
                     <BorrowRecord
                       record={record}
-                      returned={record.return_date}
+                      returned={record.return_date != null}
                       key={index}
                     />
                   )
