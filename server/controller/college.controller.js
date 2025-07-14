@@ -1,19 +1,17 @@
-import * as collegeService from "../services/colleges.services.js";
+import * as collegeService from '../services/colleges.services.js'
 
 export const getColleges = async (req, res) => {
   try {
-    const colleges = await collegeService.getColleges();
+    const colleges = await collegeService.getColleges()
 
-    if (!colleges) {
-      res.status(404).json({ message: "No colleges found" });
+    if (colleges.length == 0) {
+      res.status(404).json({ message: 'No colleges found' })
     }
 
-    return res
-      .status(200)
-      .json({ message: "Fetched colleges", data: colleges });
+    return res.status(200).json({ message: 'Fetched colleges', data: colleges })
   } catch (error) {
-    console.error("Error: ", err);
+    console.error('Error: ', err)
 
-    return res.status(500).json({ message: "Internal server error" });
+    return res.status(500).json({ message: 'Internal server error' })
   }
-};
+}
