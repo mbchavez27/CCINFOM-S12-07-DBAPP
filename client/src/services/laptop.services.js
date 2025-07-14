@@ -13,6 +13,19 @@ export const getLaptops = async (page = 1, pageSize = 10) => {
   }
 };
 
+export const getLaptopByID = async (laptop_id) => {
+  try {
+    const response = await axios.get(
+      `${import.meta.env.VITE_API_LINK}/laptops/${laptop_id}`
+    );
+
+    return response;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+};
+
 export const addLaptops = async (product_name, product_os, battery_health) => {
   try {
     const response = await axios.post(

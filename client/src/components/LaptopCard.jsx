@@ -10,6 +10,7 @@ function LaptopCard({
   in_use,
 }) {
   const navigate = useNavigate();
+  console.log(laptop_id);
   return (
     <div className="p-5 flex flex-col gap-1 rounded-xl border-2 border-neutral-300">
       <img
@@ -46,7 +47,7 @@ function LaptopCard({
           staff_view === false ? "" : "hidden"
         }`}
       >
-        <a href="/client/browse/checkout">
+        <a href={`/client/browse/checkout?laptop_id=${laptop_id}`}>
           <button className="mt-4 px-5 py-2 rounded-lg text-neutral-50 bg-neutral-600">
             Checkout
           </button>
