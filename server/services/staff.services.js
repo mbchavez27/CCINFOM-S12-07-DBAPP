@@ -17,7 +17,7 @@ export const loginStaff = async (last_name, first_name) => {
       'SELECT * FROM staff s WHERE s.last_name = ? AND s.first_name = ?',
       [last_name, first_name]
     )
-    return staff
+    return staff[0]
   } catch (error) {
     console.error('Error fetching staff: ', error)
     throw error
@@ -27,7 +27,7 @@ export const loginStaff = async (last_name, first_name) => {
 export const registerStaff = async (last_name, first_name, role, contact) => {
   try {
     const [result] = await db.query(
-      'INSERT INTO staff (last_name, first_name, role, contact) VALUES (?, ?, ?, ?)',
+      'INSERT INTO staff (last_name, first_name, contact) VALUES (?, ?, ?)',
       [last_name, first_name, role, contact]
     )
 

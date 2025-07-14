@@ -86,7 +86,11 @@ function LandingPageHero() {
                     navigate('/client')
                   }
                 } else {
-                  staffLogin(last_name, first_name)
+                  const userDetails = await staffLogin(last_name, first_name)
+                  if (userDetails.status != 404 && userDetails.status != 500) {
+                    setCookies('user', userDetails.data, { path: '/' })
+                    navigate('/staff')
+                  }
                 }
               }
             }}

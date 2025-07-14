@@ -32,13 +32,12 @@ export const loginStaff = async (req, res) => {
 }
 
 export const registerStaff = async (req, res) => {
-  const { last_name, first_name, role, contact } = req.body
+  const { last_name, first_name, contact } = req.body
 
   try {
     const newStaff = await staffService.registerStaff(
       last_name,
       first_name,
-      role,
       contact
     )
 

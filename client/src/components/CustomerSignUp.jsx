@@ -1,15 +1,15 @@
-import { use, useState } from "react";
-import { customerRegister } from "../services/customer.services";
-import { useCookies } from "react-cookie";
-import { useNavigate } from "react-router";
+import { use, useState } from 'react'
+import { customerRegister } from '../services/customer.services'
+import { useCookies } from 'react-cookie'
+import { useNavigate } from 'react-router'
 function CustomerSignUp() {
-  const [cookies, setCookies] = useCookies(["user"]);
-  const [last_name, setLast_name] = useState("");
-  const [first_name, setFirst_name] = useState("");
-  const [type, setType] = useState("");
-  const [college, setCollege] = useState("");
+  const [cookies, setCookies] = useCookies(['user'])
+  const [last_name, setLast_name] = useState('')
+  const [first_name, setFirst_name] = useState('')
+  const [type, setType] = useState('')
+  const [college, setCollege] = useState('')
 
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
   return (
     <>
@@ -26,7 +26,7 @@ function CustomerSignUp() {
               className="bg-neutral-50 p-3 rounded-md mt-1 inset-shadow-neutral-900 w-full"
               required
               onChange={(e) => {
-                setFirst_name(e.target.value);
+                setFirst_name(e.target.value)
               }}
             />
           </p>
@@ -40,7 +40,7 @@ function CustomerSignUp() {
               placeholder="Last Name"
               className="bg-neutral-50 p-3 rounded-md mt-1 inset-shadow-neutral-900 w-full"
               onChange={(e) => {
-                setLast_name(e.target.value);
+                setLast_name(e.target.value)
               }}
             />
           </p>
@@ -55,7 +55,7 @@ function CustomerSignUp() {
             value={type}
             className="bg-neutral-50 p-3 rounded-md mt-1 inset-shadow-neutral-900 w-full"
             onChange={(e) => {
-              setType(e.target.value);
+              setType(e.target.value)
             }}
           >
             <option value="" disabled hidden>
@@ -74,7 +74,7 @@ function CustomerSignUp() {
             value={college}
             className="bg-neutral-50 p-3 rounded-md mt-1 inset-shadow-neutral-900 w-full"
             onChange={(e) => {
-              setCollege(e.target.value);
+              setCollege(e.target.value)
             }}
           >
             <option value="" disabled hidden>
@@ -99,13 +99,13 @@ function CustomerSignUp() {
                 last_name,
                 first_name,
                 type,
-                college,
-              );
+                college
+              )
               if (userDetails.status != 404) {
-                setCookies("user", userDetails.data, {
-                  path: "/",
-                });
-                navigate("/client");
+                setCookies('user', userDetails, {
+                  path: '/',
+                })
+                navigate('/client')
               }
             }
           }}
@@ -115,13 +115,13 @@ function CustomerSignUp() {
       </div>
 
       <p className="text-center mt-3">
-        Returning Customer?{" "}
+        Returning Customer?{' '}
         <a className="text-blue-500" href="/">
           Log in
         </a>
       </p>
     </>
-  );
+  )
 }
 
-export default CustomerSignUp;
+export default CustomerSignUp
