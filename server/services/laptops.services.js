@@ -13,3 +13,34 @@ export const getLaptops = async (page = 1, pageSize = 10) => {
     throw error
   }
 }
+
+export const addLaptops = async (product_name, product_os, battery_health) => {
+  try {
+    const [result] = await db.query(
+      'INSERT INTO laptops(product_name, product_os, battery_health) VALUES (?,?,?)',
+      [product_name, product_os, battery_health]
+    )
+
+    const [row] = await db.query('SELECT * FROM laptops WHERE laptop_id = ?', [
+      result.insertId,
+    ])
+
+    return row[0]
+  } catch (error) {
+    console.error('Error adding laptops: ', error)
+    throw error
+  }
+}
+
+export const deleteLaptops = async (laptop_id) => {
+  try {
+    const [result] = await db.query('DELETE FROM laptops WHERE laptop_id = ?', [
+      laptop_id,
+    ])
+
+    return result.affectedRows > 0
+  } catch (error) {
+    console.error('Error deleting laptop: ', error)
+    throw error
+  }
+}
