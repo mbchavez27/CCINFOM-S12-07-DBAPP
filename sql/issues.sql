@@ -34,3 +34,4 @@ INSERT INTO issues(issue_id, type, category) VALUES
 (28, 'User/External', 'Accidental Physical Damage'),
 (29, 'User/External', 'Spillage/Liquid Damage'),
 (30, 'User/External', 'Unknown or Other Issue');
+(31, 'User/External', 'Late Return');
