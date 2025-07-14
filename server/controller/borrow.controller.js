@@ -29,3 +29,20 @@ export const borrowLaptop = async (req, res) => {
     res.status(500).json({ error: 'Internal server error' })
   }
 }
+
+export const getCurrentlyBorrowedLaptops = async (req, res) => {
+  try {
+    const currentlyBorrowedLaptops =
+      await borrowService.getCurrentlyBorrowedLaptops()
+
+    if (currentlyBorrowedLaptops.length == 0) {
+      res.status(404).json({ message: 'No status found' })
+    }
+
+    res
+      .status(200)
+      .json({ message: 'Fetched Status', data: currentlyBorrowedLaptops })
+  } catch (error) {
+    res.status(500).json({ error: 'Internal server error' })
+  }
+}

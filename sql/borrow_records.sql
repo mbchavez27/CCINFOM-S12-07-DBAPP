@@ -13,7 +13,8 @@ SELECT
     l.battery_health,
     s.staff_id,
     CONCAT(s.first_name, ' ', s.last_name) AS assigned_staff,
-    br.pickup_date
+    br.pickup_date,
+    br.return_date
 FROM borrow_records br
 JOIN customers c ON br.customer_id = c.customer_id
 JOIN colleges col ON c.college_id = col.college_id
