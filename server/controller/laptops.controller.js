@@ -7,7 +7,7 @@ export const getLaptops = async (req, res) => {
   try {
     const laptops = await laptopsService.getLaptops(page, pageSize)
 
-    if (!laptops || laptops.length === 0) {
+    if (laptops.length === 0) {
       res.status(404).json({ message: 'No laptops found' })
     }
 
