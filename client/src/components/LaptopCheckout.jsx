@@ -41,7 +41,6 @@ function LaptopCheckout({ laptop_id, laptop, os, batteryHealth }) {
                   customer_id,
                   dateToday
                 );
-                console.log("response status: " + response.status);
                 if (response.status == 500) {
                   alert("Customer is already borrowing");
                 } else {
