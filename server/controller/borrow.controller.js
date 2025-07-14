@@ -18,7 +18,9 @@ export const borrowLaptop = async (req, res) => {
           pickup_date
         )
 
-        res.status(201).json(borrow_record)
+        res
+          .status(201)
+          .json({ message: 'Borrowed Laptop', data: borrow_record })
       }
     } else {
       res.status(500).json({ error: 'Customer is already borrowing' })
