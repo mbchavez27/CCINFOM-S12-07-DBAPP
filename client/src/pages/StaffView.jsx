@@ -10,8 +10,6 @@ function StaffView() {
   const firstName = cookies.user?.data.first_name || ''
   const lastName = cookies.user?.data.last_name || ''
 
-  console.log(cookies.user)
-
   return (
     <>
       <NavBar />

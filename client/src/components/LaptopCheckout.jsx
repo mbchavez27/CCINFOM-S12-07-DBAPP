@@ -1,14 +1,14 @@
-import { borrowLaptop } from "../services/borrow.services";
-import { useCookies } from "react-cookie";
+import { borrowLaptop } from '../services/borrow.services'
+import { useCookies } from 'react-cookie'
 
 function LaptopCheckout({ laptop_id, laptop, os, batteryHealth }) {
-  const daysTillDeadline = 7;
-  const date = new Date();
-  date.setDate(date.getDate() + daysTillDeadline);
-  const dateToday = new Date().toISOString().split("T")[0];
+  const daysTillDeadline = 7
+  const date = new Date()
+  date.setDate(date.getDate() + daysTillDeadline)
+  const dateToday = new Date().toISOString().split('T')[0]
 
-  const [cookies] = useCookies(["user"]);
-  const customer_id = cookies.user?.data.customer_id;
+  const [cookies] = useCookies(['user'])
+  const customer_id = cookies.user?.data.customer_id
 
   return (
     <div className="px-30 py-20 border-y-2 border-neutral-300 flex items-center justify-center gap-20">
@@ -32,18 +32,19 @@ function LaptopCheckout({ laptop_id, laptop, os, batteryHealth }) {
             className="w-full text-lg py-2 bg-neutral-900 text-neutral-50 rounded-lg"
             onClick={async () => {
               const choice = confirm(
-                "Are you sure you want to borrow this laptop?"
-              );
+                'Are you sure you want to borrow this laptop?'
+              )
               if (choice) {
                 const response = await borrowLaptop(
                   laptop_id,
                   customer_id,
                   dateToday
-                );
+                )
+                console.log(response)
                 if (response.status == 201) {
-                  alert("Finished Borrowing... Pick up laptop at the counter");
+                  alert('Finished Borrowing... Pick up laptop at the counter')
                 } else {
-                  alert("Customer is already borrowing");
+                  alert('Customer is already borrowing')
                 }
               }
             }}
@@ -53,7 +54,7 @@ function LaptopCheckout({ laptop_id, laptop, os, batteryHealth }) {
         </div>
       </div>
     </div>
-  );
+  )
 }
 
-export default LaptopCheckout;
+export default LaptopCheckout

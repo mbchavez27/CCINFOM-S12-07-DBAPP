@@ -3,6 +3,13 @@ use laptop_borrowing;
 select * from laptops;
 SELECT * FROM laptops LIMIT 10 OFFSET 0;
 
+-- AVAILABLE LAPTOPS
+SELECT * FROM laptops l WHERE l.laptop_id NOT IN (SELECT br.laptop_id FROM borrow_records br WHERE br.return_date IS NULL ) LIMIT 10 OFFSET 0;
+
+-- IN USE LAPTOPS
+SELECT * FROM laptops l WHERE l.laptop_id IN (SELECT br.laptop_id FROM borrow_records br WHERE br.return_date IS NULL ) LIMIT 10 OFFSET 0;
+
+
 INSERT INTO laptops(product_name, product_os, battery_health) VALUES
 ('MacBook Pro 13"', 'MacOS', 95),
 ('Dell XPS 15', 'Windows', 87),
