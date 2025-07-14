@@ -7,7 +7,6 @@ function LaptopCheckout({ laptop_id, laptop, os, batteryHealth }) {
   date.setDate(date.getDate() + daysTillDeadline);
   const dateToday = new Date().toISOString().split("T")[0];
 
-  console.log(dateToday);
   const [cookies] = useCookies(["user"]);
   const customer_id = cookies.user?.data.customer_id;
 

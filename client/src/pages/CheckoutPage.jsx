@@ -21,7 +21,6 @@ function CheckoutPage() {
     fetchLaptop(queryParams.get("laptop_id"));
   }, []);
 
-  console.log(laptop);
   return (
     <>
       <NavBar />
