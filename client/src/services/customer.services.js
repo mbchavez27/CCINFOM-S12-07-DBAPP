@@ -12,7 +12,7 @@ export const customerLogin = async (last_name, first_name) => {
     return response
   } catch (error) {
     console.error(error)
-    return error
+    throw error
   }
 }
 
@@ -30,6 +30,6 @@ export const customerRegister = async (
     return response
   } catch (error) {
     console.error(error)
-    return error
+    throw error
   }
 }

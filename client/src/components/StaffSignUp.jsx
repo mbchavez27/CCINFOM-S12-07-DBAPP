@@ -1,10 +1,15 @@
-import { useState } from "react";
+import { useState } from 'react'
+import { useCookies } from 'react-cookie'
+import { useNavigate } from 'react-router'
+import { staffRegister } from '../services/staff.services'
 
 function StaffSignUp() {
-  const [lastName, setLastName] = useState("");
-  const [firstName, setFirstName] = useState("");
-  const [role, setRole] = useState("");
-  const [tel, setTel] = useState("");
+  const [lastName, setLastName] = useState('')
+  const [firstName, setFirstName] = useState('')
+  const [tel, setTel] = useState('')
+  const [cookies, setCookies] = useState(['user'])
+
+  const navigate = useNavigate()
 
   return (
     <>
@@ -21,7 +26,7 @@ function StaffSignUp() {
               className="bg-neutral-50 p-3 rounded-md mt-1 inset-shadow-neutral-900 w-full"
               required
               onChange={(e) => {
-                setFirstName(e.target.value);
+                setFirstName(e.target.value)
               }}
             />
           </p>
@@ -36,26 +41,11 @@ function StaffSignUp() {
               className="bg-neutral-50 p-3 rounded-md mt-1 inset-shadow-neutral-900 w-full"
               required
               onChange={(e) => {
-                setLastName(e.target.value);
+                setLastName(e.target.value)
               }}
             />
           </p>
         </div>
-
-        <p className="flex flex-col grow">
-          <label htmlFor="role" className="ml-5">
-            Role
-          </label>
-          <input
-            id="role"
-            value={role}
-            className="bg-neutral-50 p-3 rounded-md mt-1 inset-shadow-neutral-900 w-full"
-            onChange={(e) => {
-              setRole(e.target.value);
-            }}
-            required
-          />
-        </p>
         <p className="flex flex-col grow">
           <label htmlFor="college" className="ml-5">
             Telephone Number
@@ -68,25 +58,37 @@ function StaffSignUp() {
             pattern="^09\d{9}$"
             placeholder="09XXXXXXXXX"
             onChange={(e) => {
-              setTel(e.target.value);
+              setTel(e.target.value)
             }}
             required
           />
         </p>
 
-        <button className="mt-10 py-2 text-neutral-50 bg-blue-500 hover:bg-blue-600 transition duration-200 rounded-md">
+        <button
+          className="mt-10 py-2 text-neutral-50 bg-blue-500 hover:bg-blue-600 transition duration-200 rounded-md"
+          onClick={async () => {
+            if ((lastName, firstName, tel)) {
+              const userDetails = await staffRegister(lastName, firstName, tel)
+
+              if (userDetails.status != 404) {
+                setCookies('user', userDetails, { path: '/' })
+                navigate('/staff')
+              }
+            }
+          }}
+        >
           Sign Up
         </button>
       </div>
 
       <p className="text-center mt-3">
-        Returning Staff?{" "}
+        Returning Staff?{' '}
         <a className="text-blue-500" href="/">
           Log in
         </a>
       </p>
     </>
-  );
+  )
 }
 
-export default StaffSignUp;
+export default StaffSignUp
