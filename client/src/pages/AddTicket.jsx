@@ -6,11 +6,7 @@ function AddTicket() {
     return (
         <>
             <NavBar />
-            <TicketInput
-                laptop={"Lenovo Thinkpad T480"}
-                staff={"Max Chavez"}
-                is_penalty={false}
-            />
+            <TicketInput />
             <Footer />
         </>
     );
