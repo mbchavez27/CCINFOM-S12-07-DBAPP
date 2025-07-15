@@ -11,7 +11,6 @@ function RecordList() {
   const [records, setRecords] = useState([])
   const [cookies] = useCookies(['user'])
 
-  const staff_id = cookies.user?.data.staff_id
   const fetchCurrentLaptops = async () => {
     setLoading(false)
     const res = await getBorrowedLaptops()
@@ -46,16 +45,13 @@ function RecordList() {
           <tbody>
             {loading ? (
               records.data.map((record, index) => {
-                if (record.staff_id == staff_id) {
-                  console.log(record.return_date)
-                  return (
-                    <BorrowRecord
-                      record={record}
-                      returned={record.return_date != null}
-                      key={index}
-                    />
-                  )
-                }
+                return (
+                  <BorrowRecord
+                    record={record}
+                    returned={record.return_date != null}
+                    key={index}
+                  />
+                )
               })
             ) : (
               <tr>
