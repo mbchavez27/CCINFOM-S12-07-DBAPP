@@ -16,9 +16,19 @@ function StaffHero({ firstName, lastName }) {
                             Laptops
                         </button>
                     </a>
+                    <a href="/staff/records">
+                        <button className="px-6 py-2 bg-neutral-800 rounded-lg text-lg text-neutral-50">
+                            Records
+                        </button>
+                    </a>
                     <a href="/staff/tickets">
                         <button className="px-6 py-2 bg-neutral-800 rounded-lg text-lg text-neutral-50">
                             Tickets
+                        </button>
+                    </a>
+                    <a href="/staff/penalties">
+                        <button className="px-6 py-2 bg-neutral-800 rounded-lg text-lg text-neutral-50">
+                            Penalties
                         </button>
                     </a>
                 </div>

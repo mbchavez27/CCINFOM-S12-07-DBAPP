@@ -1,26 +1,13 @@
-function TicketInput() {
+function PenaltyInput({ laptop, customer }) {
     return (
         <>
             <div className="py-15 border-y-2 border-neutral-400 flex flex-col gap-5 items-center">
-                <h1 className="font-bold text-2xl">Add Ticket</h1>
+                <h1 className="font-bold text-2xl">Add Penalty</h1>
                 <div className="w-[400px] flex flex-col gap-2">
-                    <p className="flex flex-col grow">
-                        <label htmlFor="laptop" className="ml-5">
-                            Laptop
-                        </label>
-                        <select
-                            id="laptop"
-                            className="bg-neutral-50 p-3 rounded-md mt-1 inset-shadow-neutral-900 w-full border-2 border-neutral-400"
-                        >
-                            <option value="" disabled hidden>
-                                Select your option
-                            </option>
-                            <option value={1}>Lenovo Thinkpad T480 | Arch Linux</option>
-                            <option value={1}>Lenovo Thinkpad T480 | Arch Linux</option>
-                            <option value={1}>Lenovo Thinkpad T480 | Arch Linux</option>
-                            <option value={1}>Lenovo Thinkpad T480 | Arch Linux</option>
-                        </select>
-                    </p>
+                    <div className="bg-gray-100 p-4 rounded-md mb-4">
+                        <p className="font-bold text-xl">{laptop}</p>
+                        <p className={` text-lg`}>Customer: {customer}</p>
+                    </div>
                     <p className="flex flex-col grow">
                         <label htmlFor="staff" className="ml-5">
                             Staff
@@ -29,7 +16,7 @@ function TicketInput() {
                             id="staff"
                             className="bg-neutral-50 p-3 rounded-md mt-1 inset-shadow-neutral-900 w-full border-2 border-neutral-400"
                         >
-                            <option value="" disabled hidden>
+                            <option value="" disabled>
                                 Select your option
                             </option>
                             <option value={1}>Max Chavez</option>
@@ -79,4 +66,4 @@ function TicketInput() {
     );
 }
 
-export default TicketInput;
+export default PenaltyInput;
