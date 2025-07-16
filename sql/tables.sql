@@ -44,7 +44,7 @@ CREATE TABLE tickets (
 	description VARCHAR(255) NOT NULL,
 	date_opened DATE NOT NULL,
 	date_closed DATE,
-	CONSTRAINT chk_date_closed CHECK(date_closed IS NULL OR DATE_closed >= DATE_opened),
+	CONSTRAINT chk_date_closed CHECK(date_closed IS NULL OR date_closed >= date_opened),
 	CONSTRAINT ticket_pk PRIMARY KEY(ticket_id),
 	CONSTRAINT ticket_fk1 FOREIGN KEY(laptop_id) REFERENCES laptops(laptop_id),
 	CONSTRAINT ticket_fk2 FOREIGN KEY(staff_id) REFERENCES staff(staff_id),

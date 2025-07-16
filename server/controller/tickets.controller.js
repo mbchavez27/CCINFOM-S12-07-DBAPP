@@ -31,3 +31,33 @@ export const getTickets = async (req, res) => {
     return res.status(500).json({ message: "Internal server error" });
   }
 };
+
+export const closeTicket = async (req, res) => {
+  const { ticket_id, date_closed } = req.body;
+  try {
+    const success = await ticketService.closeTickets(ticket_id, date_closed);
+
+    if (success) {
+      res.status(201).json({ message: "Ticket closed successfully" });
+    } else {
+      res.status(404).json({ message: "Ticket not found" });
+    }
+  } catch (error) {
+    res.status(500).json({ error: "Internal server error" });
+  }
+};
+
+export const deleteTicket = async (req, res) => {
+  const { ticket_id } = req.body;
+  try {
+    const success = await ticketService.deleteTickets(ticket_id);
+
+    if (success) {
+      res.status(200).json({ message: "Ticket deleted successfully" });
+    } else {
+      res.status(404).json({ message: "Ticket not found" });
+    }
+  } catch (error) {
+    res.status(500).json({ error: "Internal server error" });
+  }
+};

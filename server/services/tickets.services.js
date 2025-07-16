@@ -37,3 +37,30 @@ export const getTickets = async () => {
     throw error;
   }
 };
+
+export const closeTickets = async (ticket_id, date_closed) => {
+  try {
+    const [result] = await db.query(
+      "UPDATE tickets SET date_closed = ? WHERE ticket_id = ?",
+      [date_closed, ticket_id]
+    );
+
+    return result.affectedRows > 0;
+  } catch (error) {
+    console.log("Error closing tickets", error);
+    throw error;
+  }
+};
+
+export const deleteTickets = async (ticket_id) => {
+  try {
+    const [result] = await db.query("DELETE FROM tickets WHERE ticket_id = ?", [
+      ticket_id,
+    ]);
+
+    return result.affectedRows > 0;
+  } catch (error) {
+    console.log("Error delete tickets", error);
+    throw error;
+  }
+};

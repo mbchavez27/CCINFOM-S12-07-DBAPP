@@ -5,7 +5,6 @@ import { useTickets } from "../hooks/useTickets";
 
 function TicketPage() {
   const { ticketLoading, tickets } = useTickets();
-  console.log(tickets);
   return (
     <>
       <NavBar />

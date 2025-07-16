@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useIssues } from "../hooks/useIssues";
 import { useLaptops } from "../hooks/useDropDownLaptop";
-import { useRef } from "react";
 import { useStaff } from "../hooks/useStaff";
 import { addTickets } from "../services/tickets.services";
 import { useNavigate } from "react-router";
@@ -18,6 +17,7 @@ function TicketInput() {
   const [selectedIssue, setIssue] = useState({});
   const dateToday = new Date().toISOString().split("T")[0];
   const navigate = useNavigate();
+
   return (
     <>
       <div className="py-15 border-y-2 border-neutral-400 flex flex-col gap-5 items-center">

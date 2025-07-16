@@ -9,6 +9,7 @@ export const useLaptops = () => {
 
   const fetchLaptops = async () => {
     if (loading || !hasMore) return;
+
     setLoading(true);
     try {
       const res = await getUsedLaptops(page);
@@ -18,7 +19,14 @@ export const useLaptops = () => {
         ? res.data.data
         : [];
 
-      setLaptops((prev) => [...prev, ...newLaptops]);
+      setLaptops((prev) => {
+        const existingIds = new Set(prev.map((l) => l.laptop_id));
+        const filteredNew = newLaptops.filter(
+          (l) => !existingIds.has(l.laptop_id)
+        );
+        return [...prev, ...filteredNew];
+      });
+
       setHasMore(newLaptops.length > 0);
       setPage((prev) => prev + 1);
     } catch (err) {

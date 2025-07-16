@@ -30,3 +30,29 @@ export const addTickets = async (
     throw error;
   }
 };
+
+export const deleteTicket = async (ticket_id) => {
+  try {
+    const response = await axios.post(
+      `${import.meta.env.VITE_API_LINK}/tickets/delete`,
+      { ticket_id }
+    );
+    return response;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+};
+
+export const closeTicket = async (ticket_id, date_closed) => {
+  try {
+    const response = await axios.post(
+      `${import.meta.env.VITE_API_LINK}/tickets/close`,
+      { ticket_id, date_closed }
+    );
+    return response;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+};
