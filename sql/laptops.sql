@@ -1,4 +1,4 @@
-use laptop_borrowing;
+USE laptop_borrowing;
 
 select * from laptops;
 SELECT * FROM laptops WHERE laptop_id = 1;
@@ -105,7 +105,3 @@ INSERT INTO laptops(product_name, product_os, battery_health) VALUES
 ('Asus ROG Zephyrus Duo', 'Windows', 75),
 ('Microsoft Surface Laptop 7', 'Windows', 89),
 ('Acer Swift 1', 'Windows', 80),
-('Dell Precision 3460', 'Linux', 86),
-('HP Envy x360', 'Windows', 84),
-('Lenovo Yoga C740', 'Windows', 82),
-('MacBook Pro 16" 2021', 'MacOS', 94);
