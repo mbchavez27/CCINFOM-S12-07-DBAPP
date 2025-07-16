@@ -1,20 +1,9 @@
 import { useEffect, useState } from "react";
 import { getIssues } from "../services/issues.service";
+import { useIssues } from "../hooks/useIssues";
 
 function TicketInput() {
-  const [loading, setLoading] = useState(false);
-  const [issues, setIssues] = useState([]);
-
-  const fetchIssues = async () => {
-    setLoading(false);
-    const res = await getIssues();
-    setIssues(res.data);
-    setLoading(true);
-  };
-
-  useEffect(() => {
-    fetchIssues();
-  }, []);
+  const { loading, issues } = useIssues();
 
   return (
     <>
@@ -67,7 +56,7 @@ function TicketInput() {
                 Select your option
               </option>
               {loading
-                ? issues.data.map((issue, index) => {
+                ? issues.map((issue, index) => {
                     return (
                       <option key={index} value={issue.issue_id}>
                         {issue.category}
