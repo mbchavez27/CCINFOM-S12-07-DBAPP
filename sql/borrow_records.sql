@@ -44,3 +44,12 @@ JOIN colleges col ON c.college_id = col.college_id
 JOIN laptops l ON br.laptop_id = l.laptop_id
 JOIN staff s ON br.staff_id = s.staff_id
 ORDER BY br.pickup_date DESC;
+
+SELECT * FROM customers;
+
+-- GET CURRENTLY BORROWING
+SELECT l.product_name, br.pickup_date, br.return_date, c.customer_id as customer_id, CONCAT(c.last_name, ' ', c.first_name) as customer_name
+FROM borrow_records br 
+INNER JOIN laptops l ON br.laptop_id = l.laptop_id
+INNER JOIN customers c ON br.customer_id = c.customer_id
+WHERE c.customer_id = 3 AND br.return_date IS NULL;

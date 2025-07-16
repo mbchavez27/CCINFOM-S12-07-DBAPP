@@ -16,11 +16,6 @@ function CustomerHero({ firstName, lastName }) {
               Borrow
             </button>
           </a>
-          <a href="/client/return">
-            <button className="px-6 py-2 bg-neutral-800 rounded-lg text-lg text-neutral-50">
-              Return
-            </button>
-          </a>
         </div>
       </div>
     </div>
