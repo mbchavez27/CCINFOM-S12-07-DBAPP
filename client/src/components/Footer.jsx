@@ -1,17 +1,9 @@
 function Footer() {
   return (
-    <div className="flex gap-20 p-7.5">
-      <img src="/images.png" alt="" className="h-10" />
-      <div className="flex flex-col gap-5">
-        <h5 className="font-semibold">Explore</h5>
-        <div className="flex flex-col gap-2 text-neutral-600">
-          <p>Rental</p>
-          <p>Contact</p>
-          <p>About</p>
-        </div>
-      </div>
+    <div className="flex gap-20 p-7.5  justify-center">
+      <h1>Borrow. Use. Return. All green-lit.</h1>
     </div>
-  );
+  )
 }
 
-export default Footer;
+export default Footer

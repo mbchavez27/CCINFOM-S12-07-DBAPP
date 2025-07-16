@@ -1,20 +1,28 @@
 function NavBar() {
-    return (
-        <nav className="flex w-full justify-between px-10 items-center">
-            <img src="/images.png" alt="" className="h-10" />
-            <ul className="flex gap-3 py-5">
-                <li className="px-1.5 py-0.5 rounded-lg hover:bg-gray-300">
-                    <a href="">Rental</a>
-                </li>
-                <li className="px-1.5 py-0.5 rounded-lg hover:bg-gray-300">
-                    <a href="">Contact</a>
-                </li>
-                <li className="px-1.5 py-0.5 rounded-lg hover:bg-gray-300">
-                    <a href="">About</a>
-                </li>
-            </ul>
-        </nav>
-    );
+  return (
+    <nav className="flex w-full justify-between px-10 items-center  p-6">
+      <a href="/">
+        <div className="flex gap-3 items-center">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={1.5}
+            stroke="currentColor"
+            className="size-8"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M9 17.25v1.007a3 3 0 0 1-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0 1 15 18.257V17.25m6-12V15a2.25 2.25 0 0 1-2.25 2.25H5.25A2.25 2.25 0 0 1 3 15V5.25m18 0A2.25 2.25 0 0 0 18.75 3H5.25A2.25 2.25 0 0 0 3 5.25m18 0V12a2.25 2.25 0 0 1-2.25 2.25H5.25A2.25 2.25 0 0 1 3 12V5.25"
+            />
+          </svg>
+
+          <h1 className="text-lg">GreenLight: Laptop Borrowing Concierge</h1>
+        </div>
+      </a>
+    </nav>
+  )
 }
 
-export default NavBar;
+export default NavBar
