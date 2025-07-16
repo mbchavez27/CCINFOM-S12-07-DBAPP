@@ -7,14 +7,14 @@ export function useIssues() {
 
   useEffect(() => {
     const fetchIssues = async () => {
-      setLoading(false);
+      setLoading(true);
       const res = await getIssues();
       setIssues(res.data.data);
-      setLoading(true);
+      setLoading(false);
     };
 
     fetchIssues();
   }, []);
 
-  return { loading, issues };
+  return { issueLoading: loading, issues };
 }

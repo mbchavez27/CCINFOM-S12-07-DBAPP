@@ -1,4 +1,4 @@
-import axios from 'axios'
+import axios from "axios";
 
 export const staffLogin = async (last_name, first_name) => {
   try {
@@ -8,13 +8,13 @@ export const staffLogin = async (last_name, first_name) => {
         last_name,
         first_name,
       }
-    )
-    return response
+    );
+    return response;
   } catch (error) {
-    console.error(error)
-    throw error
+    console.error(error);
+    throw error;
   }
-}
+};
 
 export const staffRegister = async (last_name, first_name, contact) => {
   try {
@@ -25,10 +25,21 @@ export const staffRegister = async (last_name, first_name, contact) => {
         first_name,
         contact,
       }
-    )
-    return response
+    );
+    return response;
   } catch (error) {
-    console.error(error)
-    throw error
+    console.error(error);
+    throw error;
   }
-}
+};
+
+export const getStaff = async () => {
+  try {
+    const response = await axios.get(`${import.meta.env.VITE_API_LINK}/staff`);
+
+    return response;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+};
