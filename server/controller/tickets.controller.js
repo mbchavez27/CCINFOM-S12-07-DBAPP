@@ -8,7 +8,7 @@ export const addTickets = async (req, res) => {
       laptop_id,
       staff_id,
       issue_id,
-      desciption,
+      description,
       date_opened
     );
 

@@ -132,26 +132,33 @@ function TicketInput() {
             className="mt-10 py-2 text-neutral-50 bg-blue-500 hover:bg-blue-600 transition duration-200 rounded-md"
             onClick={async () => {
               if (
-                (selectedLaptop,
-                selectedStaff,
-                selectedIssue,
-                description,
-                dateToday)
+                selectedLaptop &&
+                selectedStaff &&
+                selectedIssue &&
+                description &&
+                dateToday
               ) {
-                const newTicket = await addTickets(
-                  selectedLaptop.laptop_id,
-                  selectedStaff,
-                  selectedIssue,
-                  description,
-                  dateToday
-                );
-                console.log(newTicket);
-                if (newTicket.status == 201) {
-                  alert("Add ticket successful");
-                  navigate(0);
-                } else {
-                  alert("Add ticket unsuccessful");
+                try {
+                  const newTicket = await addTickets(
+                    selectedLaptop.laptop_id,
+                    selectedStaff,
+                    selectedIssue,
+                    description,
+                    dateToday
+                  );
+
+                  if (newTicket.status === 201) {
+                    alert("Add ticket successful");
+                    navigate("/staff/tickets");
+                  } else {
+                    alert("Add ticket unsuccessful");
+                  }
+                } catch (error) {
+                  console.error("Failed to add ticket:", error);
+                  alert("Server error: Could not add ticket (500)");
                 }
+              } else {
+                alert("Please complete all fields.");
               }
             }}
           >
