@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import StatusCard from "./StatusCard";
-import { getCustomerCurrentlyBorrowing } from "../services/customer.services";
+import { getCustomerCurrentlyBorrowing } from "../services/customer.services.js";
+import { getCurrentPenalty } from "../services/penalty.services.js";
 
 function CustomerDashboard({ customer_id }) {
   const [loading, setLoading] = useState(false);
@@ -15,6 +16,21 @@ function CustomerDashboard({ customer_id }) {
   useEffect(() => {
     fetchCurrent();
   }, []);
+
+  const [penaltyLoading, setPenaltyLoading] = useState(false);
+  const [penalty, setPenalty] = useState({});
+
+  const fetchPenalty = async () => {
+    setPenaltyLoading(false);
+    const res = await getCurrentPenalty(customer_id);
+    setPenalty(res.data.data);
+    setPenaltyLoading(true);
+  };
+
+  useEffect(() => {
+    fetchPenalty();
+  }, []);
+
   return (
     <div className="flex flex-col p-17.5">
       <div className="flex flex-col gap-1">
@@ -36,11 +52,13 @@ function CustomerDashboard({ customer_id }) {
             }`}
           />
         ) : null}
-        <StatusCard
-          header="Penalty Imposed"
-          text="Status"
-          subtext="Cannot Borrow till Settled"
-        />
+        {penaltyLoading ? (
+          <StatusCard
+            header="Penalty Imposed"
+            text="Status"
+            subtext="Cannot Borrow till Settled"
+          />
+        ) : null}
       </div>
     </div>
   );

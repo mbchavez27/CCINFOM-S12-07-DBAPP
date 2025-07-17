@@ -13,6 +13,21 @@ export const getPenalties = async () => {
   }
 };
 
+export const getCurrentPenalty = async (customer_id) => {
+  try {
+    const response = await axios.get(
+      `${
+        import.meta.env.VITE_API_LINK
+      }/penalty/current?customer_id=${customer_id}`
+    );
+
+    return response;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+};
+
 export const addPenalty = async (
   borrow_id,
   customer_id,

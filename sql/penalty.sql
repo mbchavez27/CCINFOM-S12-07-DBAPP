@@ -3,6 +3,10 @@ use laptop_borrowing;
 SELECT * FROM penalties;
 
 
+-- CHECK IF CURRENLTY HAS PENALTY 
+SELECT penalty_id, date_imposed, date_lifted FROM penalties WHERE customer_id = 2 AND date_lifted IS NULL;
+
+
 -- GET ALL PENALTIES
 SELECT 
 	p.penalty_id, 
@@ -23,5 +27,13 @@ INNER JOIN staff s ON t.staff_id = s.staff_id
 INNER JOIN issues i ON t.issue_id = i.issue_id
 INNER JOIN laptops l ON t.laptop_id = l.laptop_id;  
 
+
+
 -- INSERT PENALTIES 
 INSERT penalties (borrow_id, customer_id, ticket_id, date_imposed) VALUES (?,?,?,?);
+
+-- DELETE PENALTIES 
+DELETE FROM penalties WHERE penalty_id = ?;
+
+-- RESOLVE PENALTIES 
+UPDATE penalties SET date_lifted = ? WHERE penalty_id = ?;

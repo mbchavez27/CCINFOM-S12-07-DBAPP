@@ -62,3 +62,17 @@ export const getPenalties = async () => {
     throw error;
   }
 };
+
+export const getCurrentPenalty = async (cusomer_id) => {
+  try {
+    const [penalty] = await db.query(
+      "SELECT penalty_id, date_imposed, date_lifted FROM penalties WHERE customer_id = ? AND date_lifted IS NULL",
+      [cusomer_id]
+    );
+
+    return penalty[0];
+  } catch (error) {
+    console.error("Error fetching penalties: ", error);
+    throw error;
+  }
+};

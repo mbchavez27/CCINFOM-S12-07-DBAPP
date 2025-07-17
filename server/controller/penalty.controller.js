@@ -79,3 +79,21 @@ export const getPenalties = async (req, res) => {
     return res.status(500).json({ error: "Internal servoer error" });
   }
 };
+
+export const getCurrentPenalty = async (req, res) => {
+  const customer_id = parseInt(req.query.customer_id);
+  try {
+    const penalty = await penaltyService.getCurrentPenalty(customer_id);
+
+    if (!penalty) {
+      res.status(404).json({ message: "No penalties found" });
+    }
+
+    return res
+      .status(200)
+      .json({ message: "Fetched penalty status", data: penalty });
+  } catch (error) {
+    console.error("Error: ", error);
+    return res.status(500).json({ error: "Internal server errror" });
+  }
+};
