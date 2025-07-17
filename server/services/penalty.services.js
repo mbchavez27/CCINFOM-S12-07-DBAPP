@@ -63,11 +63,11 @@ export const getPenalties = async () => {
   }
 };
 
-export const getCurrentPenalty = async (cusomer_id) => {
+export const getCurrentPenalty = async (customer_id) => {
   try {
     const [penalty] = await db.query(
       "SELECT penalty_id, date_imposed, date_lifted FROM penalties WHERE customer_id = ? AND date_lifted IS NULL",
-      [cusomer_id]
+      [customer_id]
     );
 
     return penalty[0];
