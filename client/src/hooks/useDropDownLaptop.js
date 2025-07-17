@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getUsedLaptops } from "../services/laptop.services";
+import { getAvailableLaptops, getUsedLaptops } from "../services/laptop.services";
 
 export const useLaptops = () => {
   const [laptops, setLaptops] = useState([]);
@@ -12,7 +12,7 @@ export const useLaptops = () => {
 
     setLoading(true);
     try {
-      const res = await getUsedLaptops(page);
+      const res = await getAvailableLaptops(page);
       const newLaptops = Array.isArray(res.data)
         ? res.data
         : Array.isArray(res.data.data)

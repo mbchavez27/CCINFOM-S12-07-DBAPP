@@ -36,7 +36,7 @@ function TicketInput() {
                 }
               }}
             >
-              <div className="text-neutral-500 mb-1">
+              <div className="text-neutral-500 mb-1 ">
                 {selectedLaptop
                   ? `${selectedLaptop.product_name} | ${selectedLaptop.product_os}`
                   : "Select your option"}
@@ -45,7 +45,9 @@ function TicketInput() {
               {laptops.map((laptop, index) => (
                 <div
                   key={index}
-                  className="cursor-pointer hover:bg-neutral-200 px-2 py-1 rounded-md"
+                  className={`cursor-pointer hover:bg-neutral-200 px-2 py-1 rounded-md ${
+                    laptop == selectedLaptop ? "text-red-800" : null
+                  }`}
                   onClick={() => {
                     setSelectedLaptop(laptop);
                   }}
