@@ -111,7 +111,7 @@ function PenaltyInput({ borrow, borrow_id }) {
                   console.log(newPenalty);
                   if (newPenalty.status == 201) {
                     alert("Add penalty successful");
-                    navigate("/staff/records");
+                    navigate("/staff/penalties");
                   } else {
                     alert("Add penalty unsuccessful");
                   }

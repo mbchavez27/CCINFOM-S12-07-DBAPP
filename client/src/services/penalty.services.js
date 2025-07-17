@@ -41,3 +41,30 @@ export const addPenalty = async (
     throw error;
   }
 };
+
+export const deletePenalty = async (penalty_id) => {
+  try {
+    const response = await axios.post(
+      `${import.meta.env.VITE_API_LINK}/penalty/delete`,
+      { penalty_id }
+    );
+
+    return response;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+};
+
+export const closePenalty = async (date_lifted, penalty_id) => {
+  try {
+    const response = await axios.post(
+      `${import.meta.env.VITE_API_LINK}/penalty/close`,
+      { date_lifted, penalty_id }
+    );
+    return response;
+  } catch (error) {
+    console.error(error);
+  }
+  throw error;
+};

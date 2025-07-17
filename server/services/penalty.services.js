@@ -23,6 +23,34 @@ export const addPenalties = async (
   }
 };
 
+export const deletePenalty = async (penalty_id) => {
+  try {
+    const [result] = await db.query(
+      "DELETE FROM penalties WHERE penalty_id = ?",
+      [penalty_id]
+    );
+
+    return result.affectedRows > 0;
+  } catch (error) {
+    console.error("Error deleting penalties", error);
+    throw error;
+  }
+};
+
+export const closePenalty = async (date_lifted, penalty_id) => {
+  try {
+    const [result] = await db.query(
+      "UPDATE penalties SET date_lifted = ? WHERE penalty_id = ?",
+      [date_lifted, penalty_id]
+    );
+
+    return result.affectedRows > 0;
+  } catch (error) {
+    console.error("Error updating penalty: ", error);
+    throw error;
+  }
+};
+
 export const getPenalties = async () => {
   try {
     const [penalties] = await db.query(

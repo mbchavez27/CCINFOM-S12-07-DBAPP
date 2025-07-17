@@ -19,6 +19,7 @@ function PenaltyPage() {
   }, []);
 
   console.log(penalty);
+
   return (
     <>
       <NavBar />
@@ -39,30 +40,32 @@ function PenaltyPage() {
             </tr>
           </thead>
           <tbody>
-            {penalty.map((penalty, index) => {
-              return (
-                <PenaltyEntry
-                  key={index}
-                  penalty_id={penalty.penalty_id}
-                  customer={penalty.customer_name}
-                  laptop={penalty.product_name}
-                  staff={penalty.staff_name}
-                  issue={penalty.type}
-                  category={penalty.category}
-                  date_submitted={penalty.date_imposed}
-                  resolved={}
-                />
-              );
-            })}
-            {/* <PenaltyEntry
-              penalty_id="1"
-              customer="Alec Nono"
-              laptop="Lenovo Thinkpad T480"
-              staff="Max Chavez"
-              issue="Hardware"
-              description="Battery"
-              resolved={false}
-            /> */}
+            {!loading
+              ? penalty.map((penalty, index) => {
+                  const formattedDate = new Date(
+                    penalty.date_imposed
+                  ).toLocaleDateString("en-US", {
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric",
+                  });
+                  if (penalty.date_lifted == null) {
+                    return (
+                      <PenaltyEntry
+                        key={index}
+                        penalty_id={penalty.penalty_id}
+                        customer={penalty.customer_name}
+                        laptop={penalty.product_name}
+                        staff={penalty.staff_name}
+                        issue={penalty.type}
+                        category={penalty.category}
+                        date_submitted={formattedDate}
+                        resolved={!(penalty.date_lifted == null)}
+                      />
+                    );
+                  }
+                })
+              : null}
           </tbody>
         </table>
         <h1 className="font-bold text-3xl">Penalty Record (Closed)</h1>
@@ -76,19 +79,44 @@ function PenaltyPage() {
               <th className="px-4 py-2">Type</th>
               <th className="px-4 py-2">Category</th>
               <th className="px-4 py-2">Date Imposed</th>
-              <th className="px-4 py-2">Date Resolved</th>
+              <th className="px-4 py-2">Date Lifted</th>
             </tr>
           </thead>
           <tbody>
-            <PenaltyEntry
-              penalty_id="1"
-              customer="Alec Nono"
-              laptop="Lenovo Thinkpad T480"
-              staff="Max Chavez"
-              issue="Hardware"
-              description="Battery"
-              resolved={true}
-            />
+            {!loading
+              ? penalty.map((penalty, index) => {
+                  const formattedDate = new Date(
+                    penalty.date_imposed
+                  ).toLocaleDateString("en-US", {
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric",
+                  });
+                  const formattedDate2 = new Date(
+                    penalty.date_lifted
+                  ).toLocaleDateString("en-US", {
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric",
+                  });
+                  if (penalty.date_lifted != null) {
+                    return (
+                      <PenaltyEntry
+                        key={index}
+                        penalty_id={penalty.penalty_id}
+                        customer={penalty.customer_name}
+                        laptop={penalty.product_name}
+                        staff={penalty.staff_name}
+                        issue={penalty.type}
+                        category={penalty.category}
+                        date_submitted={formattedDate}
+                        date_lifted={formattedDate2}
+                        resolved={!(penalty.date_lifted == null)}
+                      />
+                    );
+                  }
+                })
+              : null}
           </tbody>
         </table>
       </div>

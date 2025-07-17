@@ -34,6 +34,36 @@ export const addPenalties = async (req, res) => {
   }
 };
 
+export const deletePenalty = async (req, res) => {
+  const { penalty_id } = req.body;
+  try {
+    const success = await penaltyService.deletePenalty(penalty_id);
+
+    if (success)
+      res.status(201).json({ message: "Penalty deleted successfully" });
+    eles;
+    res.status(404).json({ message: "Penalty not found" });
+  } catch (error) {
+    res.status(500).json({ error: "Internal server error" });
+  }
+};
+
+export const closePenalty = async (req, res) => {
+  const { penalty_id, date_lifted } = req.body;
+
+  try {
+    const success = await penaltyService.closePenalty(date_lifted, penalty_id);
+
+    if (success) {
+      res.status(201).json({ message: "Penalty closed successfully" });
+    } else {
+      res.status(404).json({ message: "Penalty not found" });
+    }
+  } catch (error) {
+    res.status(500).json({ error: "Internal server error" });
+  }
+};
+
 export const getPenalties = async (req, res) => {
   try {
     const penalties = await penaltyService.getPenalties();
