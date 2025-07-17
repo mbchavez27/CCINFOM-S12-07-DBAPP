@@ -7,7 +7,6 @@ export const borrowLaptop = async (req, res) => {
   try {
     const borrow_status = await borrowService.checkBorrowingStatus(customer_id);
     const current_penalty = await getCurrentPenalty(customer_id);
-    console.log(current_penalty);
     if (!current_penalty) {
       if (borrow_status.length == 0) {
         const staff_id = await getRandomStaff();
