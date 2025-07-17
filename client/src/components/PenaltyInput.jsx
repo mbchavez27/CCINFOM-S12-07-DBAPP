@@ -2,7 +2,9 @@ import { useNavigate } from "react-router";
 import { useIssues } from "../hooks/useIssues";
 import { useStaff } from "../hooks/useStaff";
 import { useState } from "react";
-function PenaltyInput({ borrow }) {
+import { addPenalty } from "../services/penalty.services";
+
+function PenaltyInput({ borrow, borrow_id }) {
   const { staffLoading, staff } = useStaff();
   const [selectedStaff, setStaff] = useState({});
   const { issueLoading, issues } = useIssues();
@@ -85,7 +87,43 @@ function PenaltyInput({ borrow }) {
               required
             />
           </p>
-          <button className="mt-10 py-2 text-neutral-50 bg-blue-500 hover:bg-blue-600 transition duration-200 rounded-md">
+          <button
+            className="mt-10 py-2 text-neutral-50 bg-blue-500 hover:bg-blue-600 transition duration-200 rounded-md"
+            onClick={async () => {
+              if (
+                borrow.customer_id &&
+                borrow.laptop_id &&
+                selectedStaff &&
+                selectedIssue &&
+                description &&
+                dateToday
+              ) {
+                try {
+                  const newPenalty = await addPenalty(
+                    borrow_id,
+                    borrow.customer_id,
+                    borrow.laptop_id,
+                    selectedStaff,
+                    selectedIssue,
+                    description,
+                    dateToday
+                  );
+                  console.log(newPenalty);
+                  if (newPenalty.status == 201) {
+                    alert("Add penalty successful");
+                    navigate("/staff/records");
+                  } else {
+                    alert("Add penalty unsuccessful");
+                  }
+                } catch (error) {
+                  console.error("Failed to add penalty: ", error);
+                  alert("Server error: Could not add penalty (500)");
+                }
+              } else {
+                alert("Please complete all fields");
+              }
+            }}
+          >
             Submit
           </button>
         </div>

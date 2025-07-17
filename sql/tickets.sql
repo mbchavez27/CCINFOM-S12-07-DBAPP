@@ -9,7 +9,7 @@ SELECT
 t.ticket_id, 
 l.product_name, 
 CONCAT(s.first_name, ' ', s.last_name) as full_name,
-i.typ e,
+i.type,
 i.category,
 t.date_opened, 	
 t.date_closed

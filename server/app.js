@@ -7,6 +7,7 @@ import laptopRouter from "./routes/laptops.routes.js";
 import borrowRouter from "./routes/borrow.routes.js";
 import issueRouter from "./routes/issues.routes.js";
 import ticketRouter from "./routes/tickets.routes.js";
+import penaltyRouter from "./routes/penalty.route.js";
 
 const app = express();
 const port = 3000;
@@ -21,6 +22,7 @@ app.use("/laptops", laptopRouter);
 app.use("/borrow-record", borrowRouter);
 app.use("/issues", issueRouter);
 app.use("/tickets", ticketRouter);
+app.use("/penalty", penaltyRouter);
 
 app.listen(port, () => {
   console.log("Laptop Borrowing App running at port " + port);

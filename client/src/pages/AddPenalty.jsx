@@ -25,7 +25,12 @@ function AddPenalty() {
   return (
     <>
       <NavBar />
-      {!loading ? <PenaltyInput borrow={borrow} /> : null}
+      {!loading ? (
+        <PenaltyInput
+          borrow={borrow}
+          borrow_id={queryParams.get("borrow_id")}
+        />
+      ) : null}
       <Footer />
     </>
   );
