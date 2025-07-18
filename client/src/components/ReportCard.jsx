@@ -11,15 +11,29 @@ function ReportCard({ title, rows, columns }) {
       </div>
       {rows.slice(0, 5).map((row, idx) => (
         <div key={idx} className="flex text-sm py-1 border-b last:border-b-0">
-          {columns.map((col, cidx) => (
-            <div key={cidx} className="w-full text-neutral-800">
-              {row[col.key]}
-            </div>
-          ))}
+          {columns.map((col, cidx) => {
+            const value = row[col.key]
+
+            const isDate =
+              typeof value === 'string' && !isNaN(Date.parse(value))
+            const formatted = isDate
+              ? new Date(value).toLocaleDateString('en-US', {
+                  year: 'numeric',
+                  month: 'long',
+                  day: 'numeric',
+                })
+              : value
+
+            return (
+              <div key={cidx} className="w-full text-neutral-800">
+                {formatted}
+              </div>
+            )
+          })}
         </div>
       ))}
     </div>
-  );
+  )
 }
 
-export default ReportCard;
+export default ReportCard
