@@ -59,3 +59,33 @@ export const getMonthlyTicketPerStaff = async (req, res) => {
     return res.status(500).json({ error: "Internal server error" });
   }
 };
+
+export const getCollegeDailyBorrowing = async (req, res) => {
+  try {
+    const result = await analyticsServices.getCollegeDailyBorrowing();
+
+    if (result.length == 0) {
+      res.status(404).json({ message: "No status found" });
+    }
+
+    return res.status(200).json({ message: "Fetched reports", data: result });
+  } catch (error) {
+    console.error("Error:", error);
+    return res.status(500).json({ error: "Internal server error" });
+  }
+};
+
+export const getCollegeMonthlyBorrowing = async (req, res) => {
+  try {
+    const result = await analyticsServices.getCollegeMonthlyBorrowing();
+
+    if (result.length == 0) {
+      res.status(404).json({ message: "No status found" });
+    }
+
+    return res.status(200).json({ message: "Fetched reports", data: result });
+  } catch (error) {
+    console.error("Error:", error);
+    return res.status(500).json({ error: "Internal server error" });
+  }
+};

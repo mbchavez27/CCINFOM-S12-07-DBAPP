@@ -6,7 +6,7 @@
          - College with Highest Daily Borrowing
          - Monthly Laptop Borrowing Duration per College
 */
-CREATE OR REPLACE VIEW college_daily_borrowing_ranking AS
+-- CREATE OR REPLACE VIEW college_daily_borrowing_ranking AS
 SELECT daily_borrows.college, AVG(daily_borrows.no_of_borrows ) AS avg_daily_borrows
 FROM
 (
@@ -37,7 +37,7 @@ ORDER BY avg_daily_borrows DESC;
 -- GROUP BY monthly_borrows.college
 -- ORDER BY avg_daily_borrows DESC;
     
-CREATE OR REPLACE VIEW college_monthly_borrowing_duration_ranking AS
+-- CREATE OR REPLACE VIEW college_monthly_borrowing_duration_ranking AS
 SELECT avg_monthly_borrowing_duration.college, AVG(avg_monthly_borrowing_duration.avg_borrowing_duration) AS avg_monthly_borrowing_duration
 FROM
 (

@@ -18,7 +18,9 @@ function StaffDashboard() {
         <p className="text-lg text-neutral-600">Updates</p>
       </div>
       <div className="py-5 flex flex-col gap-4">
-        <p className="text-xl text-neutral-600 font-semibold">Issues Reports</p>
+        <p className="text-xl text-neutral-600 font-semibold">
+          Tickets Reports
+        </p>
         <div className="flex gap-10">
           {!topLaptopsLoading && topLaptops.length > 0 && (
             <ReportCard
@@ -61,7 +63,7 @@ function StaffDashboard() {
           )}
           {!monthlyStaffLoading && monthlyStaff.length > 0 && (
             <ReportCard
-              title="Most common issue type per month"
+              title="Monthly Average Daily Ticket Assignment per Staff"
               rows={monthlyStaff}
               columns={[
                 { label: "Staff", key: "staff_name" },

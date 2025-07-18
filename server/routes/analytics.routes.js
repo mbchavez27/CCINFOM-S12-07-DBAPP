@@ -9,5 +9,13 @@ router.get(
   "/staff/monthly-average",
   analyticsController.getMonthlyTicketPerStaff
 );
+router.get(
+  "/customer/daily-average",
+  analyticsController.getCollegeDailyBorrowing
+);
+router.get(
+  "/customer/monthly-average",
+  analyticsController.getCollegeMonthlyBorrowing
+);
 
 export default router;
