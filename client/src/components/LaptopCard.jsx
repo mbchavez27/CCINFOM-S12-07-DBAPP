@@ -29,12 +29,17 @@ function LaptopCard({
           className="mt-4 px-5 py-2 rounded-lg text-neutral-50 bg-red-600"
           onClick={async () => {
             const choice = confirm(
-              'Are you sure you want do delete this laptop'
+              'Are you sure you want to delete this laptop?'
             )
             if (choice) {
-              const response = await deleteLaptop(laptop_id)
-              alert(response.data.message)
-              navigate(0)
+              try {
+                const response = await deleteLaptop(laptop_id)
+                alert(response.data.message)
+                navigate(0)
+              } catch (error) {
+                alert('Failed to delete the laptop.')
+                console.error(error)
+              }
             }
           }}
         >

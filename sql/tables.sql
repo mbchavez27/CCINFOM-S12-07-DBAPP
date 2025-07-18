@@ -91,3 +91,6 @@ CREATE TABLE penalties (
 	CONSTRAINT penalties_fk2 FOREIGN KEY(customer_id) REFERENCES customers(customer_id),
 	CONSTRAINT penalties_fk3 FOREIGN KEY(ticket_id) REFERENCES tickets(ticket_id)
 );
+
+
+

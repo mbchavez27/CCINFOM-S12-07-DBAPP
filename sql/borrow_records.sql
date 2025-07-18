@@ -68,11 +68,15 @@ SELECT
     s.staff_id,
     CONCAT(s.first_name, ' ', s.last_name) AS assigned_staff,
     br.pickup_date,
-    br.return_date
+    br.return_date,
+    p.penalty_id
 FROM borrow_records br
 JOIN customers c ON br.customer_id = c.customer_id
 JOIN colleges col ON c.college_id = col.college_id
 JOIN laptops l ON br.laptop_id = l.laptop_id
 JOIN staff s ON br.staff_id = s.staff_id
-WHERE c.customer_id = ? 
+LEFT JOIN penalties p ON br.borrow_id = p.borrow_id
+WHERE c.customer_id = ?
 ORDER BY br.pickup_date DESC;
+
+SELECT * FROM penalties;
