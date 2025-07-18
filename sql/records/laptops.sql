@@ -1,6 +1,6 @@
 USE laptop_borrowing;
 
-select * from laptops;
+SELECT * FROM laptops;
 SELECT * FROM laptops WHERE laptop_id = 1;
 SELECT * FROM laptops LIMIT 10 OFFSET 0;
 
@@ -104,4 +104,4 @@ INSERT INTO laptops(product_name, product_os, battery_health) VALUES
 ('MacBook Pro 13" 2020', 'MacOS', 93),
 ('Asus ROG Zephyrus Duo', 'Windows', 75),
 ('Microsoft Surface Laptop 7', 'Windows', 89),
-('Acer Swift 1', 'Windows', 80),
+('Acer Swift 1', 'Windows', 80);
