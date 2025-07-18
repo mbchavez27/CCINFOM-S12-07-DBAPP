@@ -74,5 +74,5 @@ JOIN customers c ON br.customer_id = c.customer_id
 JOIN colleges col ON c.college_id = col.college_id
 JOIN laptops l ON br.laptop_id = l.laptop_id
 JOIN staff s ON br.staff_id = s.staff_id
-WHERE c.last_name = ? AND c.first_name = ?
+WHERE c.customer_id = ? 
 ORDER BY br.pickup_date DESC;

@@ -1,8 +1,17 @@
-import NavBar from "../components/NavBar";
-import Footer from "../components/Footer";
-import BorrowRecordClient from "../components/BorrowRecordClient";
+import { useCookies } from 'react-cookie'
+import NavBar from '../components/NavBar'
+import Footer from '../components/Footer'
+import BorrowRecordClient from '../components/BorrowRecordClient'
+import { useBorrowedLaptops } from '../hooks/useGetBorrowHistory'
 
 function BorrowHistory() {
+  const [cookies] = useCookies(['user'])
+
+  const customer_id = cookies.user?.data.customer_id || ''
+
+  const { borrowedLaptopLoading, borrowedLaptops } =
+    useBorrowedLaptops(customer_id)
+
   return (
     <>
       <NavBar />
@@ -21,13 +30,22 @@ function BorrowHistory() {
             </tr>
           </thead>
           <tbody className="text-center">
-            <BorrowRecordClient />
+            {!borrowedLaptopLoading
+              ? borrowedLaptops.map((borrowedLaptop, index) => {
+                  return (
+                    <BorrowRecordClient
+                      borrowedLaptop={borrowedLaptop}
+                      key={index}
+                    />
+                  )
+                })
+              : null}
           </tbody>
         </table>
       </div>
       <Footer />
     </>
-  );
+  )
 }
 
-export default BorrowHistory;
+export default BorrowHistory
