@@ -13,41 +13,43 @@ import RecordList from "./pages/RecordList";
 import AddTicket from "./pages/AddTicket";
 import AddPenalty from "./pages/AddPenalty";
 import PenaltyPage from "./pages/PenaltyPage";
+import BorrowHistory from "./pages/BorrowHistory";
 
 function App() {
-    return (
-        <div className="font-inter">
-            <BrowserRouter>
-                <Routes>
-                    <Route path="/" element={<LandingPage />} />
-                    <Route path="signup" element={<SignUpPage />} />
-                    <Route path="staff">
-                        <Route index element={<StaffView />} />
-                        <Route path="laptops">
-                            <Route index element={<LaptopInventory />} />
-                            <Route path="add" element={<AddLaptop />} />
-                        </Route>
-                        <Route path="tickets">
-                            <Route index element={<TicketPage />} />
-                            <Route path="add" element={<AddTicket />} />
-                        </Route>
-                        <Route path="records">
-                            <Route index element={<RecordList />} />
-                            <Route path="penalty" element={<AddPenalty />} />
-                        </Route>
-                        <Route path="penalties" element={<PenaltyPage />} />
-                    </Route>
-                    <Route path="client">
-                        <Route index element={<ClientView />} />
-                        <Route path="browse">
-                            <Route index element={<BorrowPage />} />
-                            <Route path="checkout" element={<CheckoutPage />} />
-                        </Route>
-                    </Route>
-                </Routes>
-            </BrowserRouter>
-        </div>
-    );
+  return (
+    <div className="font-inter">
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<LandingPage />} />
+          <Route path="signup" element={<SignUpPage />} />
+          <Route path="staff">
+            <Route index element={<StaffView />} />
+            <Route path="laptops">
+              <Route index element={<LaptopInventory />} />
+              <Route path="add" element={<AddLaptop />} />
+            </Route>
+            <Route path="tickets">
+              <Route index element={<TicketPage />} />
+              <Route path="add" element={<AddTicket />} />
+            </Route>
+            <Route path="records">
+              <Route index element={<RecordList />} />
+              <Route path="penalty" element={<AddPenalty />} />
+            </Route>
+            <Route path="penalties" element={<PenaltyPage />} />
+          </Route>
+          <Route path="client">
+            <Route index element={<ClientView />} />
+            <Route path="browse">
+              <Route index element={<BorrowPage />} />
+              <Route path="checkout" element={<CheckoutPage />} />
+            </Route>
+            <Route path="history" element={<BorrowHistory />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </div>
+  );
 }
 
 export default App;
