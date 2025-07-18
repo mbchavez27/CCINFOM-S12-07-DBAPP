@@ -4,5 +4,10 @@ const router = express.Router();
 
 router.get("/laptop/top-per-month", analyticsController.getTopLaptopPerMonth);
 router.get("/issue/top-per-month", analyticsController.getTopIssuePerMonth);
+router.get("/staff/top-per-month", analyticsController.getTopStaffPerMonth);
+router.get(
+  "/staff/monthly-average",
+  analyticsController.getMonthlyTicketPerStaff
+);
 
 export default router;

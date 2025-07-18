@@ -25,3 +25,29 @@ export const getTopIssuePerMonth = async () => {
     throw error;
   }
 };
+
+export const getTopStaffPerMonth = async () => {
+  try {
+    const [result] = await db.query(
+      "SELECT CONCAT(s.first_name, ' ', s.last_name) AS staff_name, DATE_FORMAT(t.date_opened, '%Y-%m') AS ticket_month, COUNT(t.ticket_id) AS ticket_count FROM tickets t JOIN staff s ON t.staff_id = s.staff_id GROUP BY s.staff_id, ticket_month ORDER BY ticket_month DESC, ticket_count DESC"
+    );
+
+    return result;
+  } catch (error) {
+    console.error("Error fetching issues: ", error);
+    throw error;
+  }
+};
+
+export const getMonthlyTicketPerStaff = async () => {
+  try {
+    const [result] = await db.query(
+      "SELECT s.staff_id, CONCAT(s.first_name, ' ', s.last_name) AS staff_name, DATE_FORMAT(t.date_opened, '%Y-%m') AS month, COUNT(t.ticket_id) / COUNT(DISTINCT t.date_opened) AS avg_daily_tickets FROM tickets t JOIN staff s ON t.staff_id = s.staff_id GROUP BY s.staff_id, month ORDER BY month DESC, avg_daily_tickets DESC"
+    );
+
+    return result;
+  } catch (error) {
+    console.error("Error fetching issues: ", error);
+    throw error;
+  }
+};
