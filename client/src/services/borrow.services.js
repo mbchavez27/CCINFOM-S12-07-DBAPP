@@ -13,11 +13,11 @@ export const borrowLaptop = async (laptop_id, customer_id, pickup_date) => {
   }
 }
 
-export const returnLaptop = async (borrow_id, return_date) => {
+export const returnLaptop = async (pickup_date, borrow_id, return_date) => {
   try {
     const response = await axios.post(
       `${import.meta.env.VITE_API_LINK}/borrow-record/return`,
-      { borrow_id, return_date }
+      { pickup_date, borrow_id, return_date }
     )
     return response
   } catch (error) {

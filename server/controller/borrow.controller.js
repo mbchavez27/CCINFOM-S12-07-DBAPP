@@ -1,5 +1,8 @@
 import * as borrowService from '../services/borrow.services.js'
-import { getCurrentPenalty } from '../services/penalty.services.js'
+import {
+  addLatePenalty,
+  getCurrentPenalty,
+} from '../services/penalty.services.js'
 import { getRandomStaff } from '../services/staff.services.js'
 
 export const borrowLaptop = async (req, res) => {
@@ -37,17 +40,28 @@ export const borrowLaptop = async (req, res) => {
 }
 
 export const returnLaptop = async (req, res) => {
-  const { return_date, borrow_id } = req.body
+  const { pickup_date, return_date, borrow_id, customer_id } = req.body
+
   try {
     const success = await borrowService.returnLaptop(borrow_id, return_date)
 
-    if (success) {
-      res.status(201).json({ message: 'Laptop returned successfully' })
-    } else {
-      res.status(404).json({ message: 'Laptop not found' })
+    if (!success) {
+      return res.status(404).json({ message: 'Laptop not found' })
     }
+
+    const pickup = new Date(pickup_date)
+    const returned = new Date(return_date)
+    const timeDiff = returned.getTime() - pickup.getTime()
+    const daysBorrowed = timeDiff / (1000 * 60 * 60 * 24)
+
+    if (daysBorrowed > 7) {
+      await addLatePenalty(borrow_id, customer_id, return_date)
+    }
+
+    return res.status(201).json({ message: 'Laptop returned successfully' })
   } catch (error) {
-    res.status(500).json({ error: 'Internal server error' })
+    console.error('Error returning laptop:', error)
+    return res.status(500).json({ error: 'Internal server error' })
   }
 }
 
