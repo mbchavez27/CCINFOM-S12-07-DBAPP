@@ -1,15 +1,3 @@
--- SQL SCRIPT
-SELECT * FROM staff;
-
--- GET RANDOM STAFF
-SELECT staff_id
-FROM staff
-ORDER BY RAND()
-LIMIT 1;
-
--- CREATE TEMPLATES
-INSERT INTO staff (last_name, first_name, role, contact) values (?, ?, ?, ?); 
-
 -- STAFF REPORT: Top Staff with Most Tickets Assigned Per Month
 SELECT 
     CONCAT(s.first_name, ' ', s.last_name) AS staff_name,
