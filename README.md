@@ -45,10 +45,13 @@ npm install
 - Configure the .env file:
 
 ```bash
+Server
 DB_HOST=localhost
 DB_USER=root
 DB_PASS=your_mysql_password
 DB_NAME=laptop_borrowing
+Client
+VITE_API_LINK="http://localhost:3000"
 ```
 
 4. Run the development server
