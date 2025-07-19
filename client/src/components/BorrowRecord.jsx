@@ -27,7 +27,7 @@ function BorrowRecord({ record, returned }) {
         })}
       </td>
       <td className="px-4 py-2">
-        {new Date(record.pickup_date) >
+        {new Date(record.return_date) >
         new Date(
           new Date(record.pickup_date).getTime() + 7 * 24 * 60 * 60 * 1000
         )
