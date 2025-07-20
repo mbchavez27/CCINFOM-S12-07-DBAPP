@@ -115,7 +115,7 @@ function StaffDashboard() {
                 columns={[
                   { label: 'Colleges', key: 'college' },
                   {
-                    label: 'Average Daily Borrowing Duration',
+                    label: 'Average Daily Borrowing',
                     key: 'avg_daily_borrows',
                   },
                 ]}
