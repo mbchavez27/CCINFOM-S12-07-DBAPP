@@ -14,9 +14,10 @@ function ReportCard({ title, rows, columns }) {
           {columns.map((col, cidx) => {
             const value = row[col.key]
 
-            const isDate =
-              typeof value === 'string' && !isNaN(Date.parse(value))
-            const formatted = isDate
+            const isISODateString =
+              typeof value === 'string' && /^\d{4}-\d{2}-\d{2}T/.test(value)
+
+            const formatted = isISODateString
               ? new Date(value).toLocaleDateString('en-US', {
                   year: 'numeric',
                   month: 'long',

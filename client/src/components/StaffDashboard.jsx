@@ -13,6 +13,7 @@ import {
 
 function StaffDashboard() {
   const { topLaptopsLoading, topLaptops } = useTopLaptopPerMonth()
+  console.log(topLaptops)
   const { topIssuesLoading, topIssues } = useTopIssuePerMonth()
   const { topStaffLoading, topStaff } = useTopStaffPerMonth()
   const { monthlyStaffLoading, monthlyStaff } = useMonthlyTickerPerStaff()
